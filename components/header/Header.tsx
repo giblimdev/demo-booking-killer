@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderNav from "../header/headerNav";
+import HeaderNav from "./headerNav";
 import Link from "next/link";
 
 function Header() {
