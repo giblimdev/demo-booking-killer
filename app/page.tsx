@@ -1,436 +1,110 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import {
-  MapPin,
-  Calendar,
-  Users,
-  Search,
-  CheckCircle,
-  XCircle,
-  Shield,
-  Heart,
-  Globe,
-} from "lucide-react";
 
-type SearchData = {
-  destination: string;
-  checkIn: string;
-  checkOut: string;
-  guests: number;
-};
-
-export default function HomePage() {
+export default function LandingPage() {
   const router = useRouter();
-  const [isVisible, setIsVisible] = useState(false);
-  const [searchData, setSearchData] = useState<SearchData>({
-    destination: "",
-    checkIn: "",
-    checkOut: "",
-    guests: 1,
-  });
 
   useEffect(() => {
-    setIsVisible(true);
-  }, []);
+    // Redirection automatique après 3 secondes
+    const timer = setTimeout(() => {
+      router.push("/com");
+    }, 0);
 
-  const navigateTo = (path: string) => {
-    router.push(path);
+    // Nettoyage du timer si le composant est démonté
+    return () => clearTimeout(timer);
+  }, [router]);
+
+  const handleSkip = () => {
+    router.push("/demo");
   };
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    navigateTo("/search");
-  };
-
-  // Données réutilisables
-  const comparisonData = {
-    them: [
-      {
-        icon: <XCircle className="w-8 h-8 text-red-500" />,
-        text: "**+25% de frais surprise** à la caisse",
-      },
-      {
-        icon: <XCircle className="w-8 h-8 text-red-500" />,
-        text: "**20% de commission** sur chaque réservation",
-      },
-      {
-        icon: <XCircle className="w-8 h-8 text-red-500" />,
-        text: "**Algorithmes trompeurs** qui gonflent les prix",
-      },
-      {
-        icon: <XCircle className="w-8 h-8 text-red-500" />,
-        text: "**Fausse urgence** pour vous faire payer plus",
-      },
-    ],
-    us: [
-      {
-        icon: <CheckCircle className="w-8 h-8 text-green-500" />,
-        text: "**0 FRAIS CACHÉS** - prix final immédiat",
-      },
-      {
-        icon: <CheckCircle className="w-8 h-8 text-green-500" />,
-        text: "**0% DE COMMISSION** pour les hôtes",
-      },
-      {
-        icon: <CheckCircle className="w-8 h-8 text-green-500" />,
-        text: "**Prix directs** sans manipulation",
-      },
-      {
-        icon: <CheckCircle className="w-8 h-8 text-green-500" />,
-        text: "**Transparence totale** à chaque étape",
-      },
-    ],
-  };
-
-  const features = [
-    {
-      icon: <Shield className="h-16 w-16 text-blue-400 mx-auto mb-6" />,
-      title: "**Zéro Frais Clients**",
-      description:
-        "Ce que vous voyez est ce que vous payez - aucune surprise à la caisse.",
-      borderColor: "border-blue-500/30",
-    },
-    {
-      icon: <Heart className="h-16 w-16 text-green-400 mx-auto mb-6" />,
-      title: "**0% Commission**",
-      description:
-        "Les hôtes gardent 100% du prix affiché - des tarifs plus justes pour tous.",
-      borderColor: "border-green-500/30",
-    },
-    {
-      icon: <Globe className="h-16 w-16 text-purple-400 mx-auto mb-6" />,
-      title: "**Économie Réelle**",
-      description:
-        "Votre argent va directement aux hôtes, pas aux intermédiaires.",
-      borderColor: "border-purple-500/30",
-    },
-  ];
-
-  const testimonials = [
-    {
-      emoji: "😱",
-      quote:
-        "**ENFIN !** Une plateforme qui ne rajoute pas des frais à la dernière étape !",
-      author: "- Sarah, Paris",
-      color: "yellow",
-    },
-    {
-      emoji: "🤯",
-      quote: "J'ai **ÉCONOMISÉ 30%** en réservant directement chez l'hôte !",
-      author: "- Marcus, Berlin",
-      color: "green",
-    },
-    {
-      emoji: "🔥",
-      quote: "En tant qu'hôte, je gagne **30% DE PLUS** par réservation !",
-      author: "- Elena, Rome",
-      color: "purple",
-    },
-  ];
 
   return (
-    <div className=" text-white overflow-hidden">
-      {/* Animated Background */}
-      <div className="min-h-screen fixed inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-black">
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.2'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-            animation: "pulse 6s infinite",
-          }}
-        />
+    <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 flex items-center justify-center">
+      <div className="text-center text-white px-4">
+        {/* Logo/Titre */}
+        <div className="mb-8">
+          <h1 className="text-6xl font-bold mb-4 animate-fade-in">
+            FastBooking
+          </h1>
+          <div className="w-24 h-1 bg-white mx-auto rounded-full"></div>
+        </div>
+
+        {/* Message de bienvenue */}
+        <div className="mb-8 animate-slide-up">
+          <h2 className="text-2xl md:text-3xl font-light mb-4">
+            Bienvenue dans votre solution de gestion d'hébergements
+          </h2>
+          <p className="text-lg opacity-90 max-w-md mx-auto">
+            Découvrez une expérience moderne et intuitive pour gérer vos
+            réservations
+          </p>
+        </div>
+
+        {/* Indicateur de chargement */}
+        <div className="mb-8">
+          <div className="inline-flex items-center space-x-2">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+            <span className="text-sm">Chargement de la démonstration...</span>
+          </div>
+        </div>
+
+        {/* Compteur visuel */}
+        <div className="mt-8">
+          <div className="w-48 h-1 bg-white bg-opacity-30 rounded-full mx-auto overflow-hidden">
+            <div className="h-full bg-white rounded-full animate-progress"></div>
+          </div>
+          <p className="text-sm mt-2 opacity-75">
+            Redirection automatique dans quelques secondes...
+          </p>
+        </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative z-10 min-h-screen flex items-center justify-center px-4">
-        <div
-          className={`text-center transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="mb-12">
-            <h1 className="text-6xl md:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-yellow-500 to-pink-500 animate-pulse">
-              STOP
-            </h1>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
-              Aux <span className="text-red-500">FRAIS CACHÉS</span> des
-              plateformes
-            </h2>
-            <p className="text-xl md:text-2xl font-semibold text-yellow-400 mb-8">
-              **0 FRAIS AJOUTÉS** • **0% DE COMMISSION** • **100% TRANSPARENCE**
-            </p>
-          </div>
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-          {/* Search Form */}
-          <form
-            onSubmit={handleSearch}
-            className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 max-w-4xl mx-auto mb-12 border border-white/20"
-          >
-            <h3 className="text-2xl font-bold mb-6 text-white">
-              Trouvez des hébergements 100% directs
-            </h3>
+        @keyframes slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-            <div className="grid md:grid-cols-4 gap-4 mb-6">
-              <div className="relative">
-                <MapPin className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Où allez-vous ?"
-                  className="w-full pl-10 pr-4 py-3 bg-white/90 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                  value={searchData.destination}
-                  onChange={(e) =>
-                    setSearchData({
-                      ...searchData,
-                      destination: e.target.value,
-                    })
-                  }
-                  required
-                />
-              </div>
+        @keyframes progress {
+          from {
+            width: 0%;
+          }
+          to {
+            width: 100%;
+          }
+        }
 
-              <div className="relative">
-                <Calendar className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <input
-                  type="date"
-                  className="w-full pl-10 pr-4 py-3 bg-white/90 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                  value={searchData.checkIn}
-                  onChange={(e) =>
-                    setSearchData({ ...searchData, checkIn: e.target.value })
-                  }
-                  required
-                />
-              </div>
+        .animate-fade-in {
+          animation: fade-in 1s ease-out;
+        }
 
-              <div className="relative">
-                <Calendar className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <input
-                  type="date"
-                  className="w-full pl-10 pr-4 py-3 bg-white/90 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                  value={searchData.checkOut}
-                  onChange={(e) =>
-                    setSearchData({ ...searchData, checkOut: e.target.value })
-                  }
-                  required
-                />
-              </div>
+        .animate-slide-up {
+          animation: slide-up 1s ease-out 0.3s both;
+        }
 
-              <div className="relative">
-                <Users className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <select
-                  className="w-full pl-10 pr-4 py-3 bg-white/90 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none text-black"
-                  value={searchData.guests}
-                  onChange={(e) =>
-                    setSearchData({
-                      ...searchData,
-                      guests: parseInt(e.target.value),
-                    })
-                  }
-                >
-                  {[1, 2, 3, 4].map((num) => (
-                    <option key={num} value={num}>
-                      {num} {num > 1 ? "Voyageurs" : "Voyageur"}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 text-lg"
-            >
-              <Search className="h-5 w-5" />
-              <span>Rechercher des hébergements directs</span>
-            </button>
-          </form>
-
-          {/* Stats */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
-            {[
-              {
-                value: "0€",
-                title: "FRAIS CLIENTS",
-                description: "Aucun frais ajouté",
-                color: "red",
-              },
-              {
-                value: "0%",
-                title: "COMMISSION",
-                description: "Pour les hôtes",
-                color: "green",
-              },
-              {
-                value: "100%",
-                title: "DIRECT",
-                description: "Prix sans intermédiaire",
-                color: "purple",
-              },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className={`bg-${stat.color}-600/20 backdrop-blur-sm rounded-2xl p-6 border border-${stat.color}-500/30`}
-              >
-                <div
-                  className={`text-4xl font-black text-${stat.color}-400 mb-2`}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-lg font-semibold">{stat.title}</div>
-                <div className="text-sm text-gray-300">{stat.description}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="space-y-6">
-            <button
-              onClick={() => navigateTo("/demo")}
-              className="group relative bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50"
-            >
-              <span className="relative z-10">🔥 ESSAYER LA DÉMO GRATUITE</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-red-500 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity"></div>
-            </button>
-
-            <p className="text-lg text-gray-300">
-              **AUCUNE CARTE REQUISE** • **SANS ENGAGEMENT** • **100%
-              TRANSPARENT**
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison Section */}
-      <section className="relative z-10 py-20 px-4">
-        <div className="container mx-auto">
-          <h2 className="text-5xl font-black text-center mb-16">
-            <span className="text-red-500">LES AUTRES</span> vs{" "}
-            <span className="text-green-500">NOUS</span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Them Column */}
-            <div className="bg-red-900/30 backdrop-blur-sm rounded-3xl p-8 border-2 border-red-500/50">
-              <h3 className="text-3xl font-black text-red-400 mb-8 text-center">
-                🏢 PLATEFORMES CLASSIQUES
-              </h3>
-
-              <div className="space-y-6">
-                {comparisonData.them.map((item, index) => (
-                  <div key={index} className="flex items-center space-x-4">
-                    {item.icon}
-                    <span className="text-xl">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Us Column */}
-            <div className="bg-green-900/30 backdrop-blur-sm rounded-3xl p-8 border-2 border-green-500/50">
-              <h3 className="text-3xl font-black text-green-400 mb-8 text-center">
-                ⚡ DIRECTETHIC
-              </h3>
-
-              <div className="space-y-6">
-                {comparisonData.us.map((item, index) => (
-                  <div key={index} className="flex items-center space-x-4">
-                    {item.icon}
-                    <span className="text-xl">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="relative z-10 py-20 px-4 bg-gradient-to-r from-blue-900/50 to-purple-900/50">
-        <div className="container mx-auto">
-          <h2 className="text-4xl font-black text-center mb-16 text-white">
-            Le voyage <strong>sans intermédiaire</strong>
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className={`bg-black/50 backdrop-blur-sm rounded-2xl p-8 border ${feature.borderColor} text-center`}
-              >
-                {feature.icon}
-                <h3
-                  className="text-2xl font-bold mb-4"
-                  dangerouslySetInnerHTML={{ __html: feature.title }}
-                />
-                <p className="text-gray-300 text-lg">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="relative z-10 py-20 px-4">
-        <div className="container mx-auto text-center">
-          <h2 className="text-5xl font-black mb-16">
-            CE QU'ILS DISENT DE NOUS
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className={`bg-black/50 backdrop-blur-sm rounded-2xl p-8 border border-${testimonial.color}-500/30`}
-              >
-                <div className="text-6xl mb-4">{testimonial.emoji}</div>
-                <p
-                  className="text-xl font-semibold mb-4"
-                  dangerouslySetInnerHTML={{ __html: testimonial.quote }}
-                />
-                <div className={`text-${testimonial.color}-400 font-bold`}>
-                  {testimonial.author}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="relative z-10 py-20 px-4">
-        <div className="container mx-auto text-center">
-          <h2 className="text-6xl font-black mb-8">
-            PRÊT À VOYAGER <strong>SANS INTERMÉDIAIRE</strong> ?
-          </h2>
-
-          <p className="text-2xl mb-12 text-gray-300">
-            <strong>0 FRAIS CACHÉS</strong> • <strong>0% DE COMMISSION</strong>{" "}
-            • <strong>100% SATISFACTION</strong>
-          </p>
-
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-            <button
-              onClick={() => navigateTo("/demo")}
-              className="group relative bg-gradient-to-r from-yellow-500 to-red-500 hover:from-yellow-600 hover:to-red-600 text-black font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            >
-              🚀 <strong>ESSAYER GRATUITEMENT</strong>
-            </button>
-
-            <button
-              onClick={() => navigateTo("/become-host")}
-              className="group relative bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
-            >
-              💰 <strong>DEVENIR HÔTE</strong> (0% COMMISSION)
-            </button>
-          </div>
-
-          <div className="mt-8 text-lg text-gray-400">
-            **AUCUN ENGAGEMENT** • **SANS CARTE BANCAIRE** • **ESSAI IMMÉDIAT**
-          </div>
-        </div>
-      </section>
+        .animate-progress {
+          animation: progress 3s linear;
+        }
+      `}</style>
     </div>
   );
 }
