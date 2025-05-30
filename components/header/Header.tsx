@@ -19,7 +19,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className="relative z-50">
+    <header className="relative z-2000">
       <div className="p-4 bg-white shadow-md flex items-center">
         <button onClick={() => setOpen(true)} className="text-gray-700 hover:text-blue-600">
           <Menu className="w-6 h-6" />
