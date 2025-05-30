@@ -131,9 +131,9 @@ export default function HomePage() {
   ];
 
   return (
-    <div className=" bg-black text-white overflow-hidden">
+    <div className=" text-white overflow-hidden">
       {/* Animated Background */}
-      <div className="">
+      <div className="min-h-screen fixed inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-black">
         <div
           className="absolute inset-0 opacity-30"
           style={{
