@@ -15,7 +15,7 @@ import {
   accessibilityOptions,
   parkingOptions,
   bedTypes,
-} from "../../../../lib/registatHotelItem";
+} from "@/lib/registatHotelItem";
 
 const SideNav = () => {
   const [selectedDestinations, setSelectedDestinations] = useState<string[]>([]);

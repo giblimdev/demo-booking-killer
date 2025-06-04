@@ -1,12 +1,42 @@
 import React from "react";
 import LogsStatus from "./LogsStatus";
 import SelectLang from "./SelectLang";
-import { useTranslations } from 'next-intl'; 
-import { Link } from '@/i18n/navigation';
+import Link from "next/link";
 
-export default function Nav() {
-  const t = useTranslations('Nav'); // Utilisez le bon namespace 'Nav'
-  console.log("Traduction accommodations:", t('accommodations'));
+// Dictionnaire de traductions
+const translations: Record<string, Record<string, string>> = {
+  en: {
+    accommodations: "Accommodations",
+    aboutUs: "About Us",
+    contactUs: "Contact Us",
+    Labeling: "Labeling",
+    dev: "Dev",
+    admin: "Admin",
+    home: "FastBookInn"
+  },
+  fr: {
+    accommodations: "Hébergements",
+    aboutUs: "À Propos",
+    contactUs: "Contact",
+    Labeling: "Labelisation",
+    dev: "Développement",
+    admin: "Administration",
+    home: "FastBookInn"
+  },
+  es: {
+    accommodations: "Alojamientos",
+    aboutUs: "Sobre Nosotros",
+    contactUs: "Contacto",
+    Labeling: "Etiquetado",
+    dev: "Desarrollo",
+    admin: "Administración",
+    home: "FastBookInn"
+  }
+};
+
+export default function Nav({ lang = "en" }: { lang?: string }) {
+  // Récupère les traductions pour la langue sélectionnée
+  const t = translations[lang] || translations.en;
 
   return (
     <div>
@@ -15,52 +45,50 @@ export default function Nav() {
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
               <Link href="/" className="text-2xl font-bold text-blue-600">
-              FastBookInn
+                {t.home}
               </Link>
             </div>
-            <div className=" md:flex space-x-8">
-              
-             <Link
+            
+            <div className="md:flex space-x-8">
+              <Link
                 href="/accommodations"
                 className="text-gray-700 hover:text-blue-600"
               >
-                {t('accommodations')} {/* Utilisez la traduction pour "accommodations" */}
+                {t.accommodations}
               </Link>
               <Link
                 href="/AboutUs"
                 className="text-gray-700 hover:text-blue-600"
               >
-                {t('aboutUs')} {/* Utilisez la traduction pour "aboutUs" */}
+                {t.aboutUs}
               </Link>
               <Link
                 href="/contactUs"
                 className="text-gray-700 hover:text-blue-600"
               >
-                {t('contactUs')} {/* Utilisez la traduction pour "contactUs" */}
+                {t.contactUs}
               </Link>
               <Link
                 href="/label"
                 className="text-gray-700 hover:text-blue-600"
               >
-                {t('Labeling')} {/* Utilisez la traduction pour "label" */}
+                {t.Labeling}
               </Link>
               <Link
                 href="/dev"
                 className="text-gray-700 hover:text-blue-600"
               >
-                {t('dev')} {/* Utilisez la traduction pour "dev" */}
+                {t.dev}
               </Link>
               <Link
                 href="/admin"
                 className="text-gray-700 hover:text-blue-600"
               >
-                {t('admin')} {/* Utilisez la traduction pour "Admin" */}
+                {t.admin}
               </Link>
             </div>
 
-
             <div className="flex items-center space-x-4">
-              <SelectLang />
               <LogsStatus />
             </div>
           </div>
