@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const navLinks = [
-  { id: 1, label: "Home", href: "/com", icon: "Home" },
+  { id: 1, label: "Home", href: "/", icon: "Home" },
   {
     id: 2,
     label: "Client Communication",

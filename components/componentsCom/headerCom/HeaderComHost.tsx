@@ -7,27 +7,20 @@ import { ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const navLinks = [
-  { id: 1, label: "Home", href: "/com", icon: "Home" },
+  { id: 1, label: "Home", href: "/", icon: "Home" },
   {
     id: 2,
-    label: "Client Communication",
-    href: "/com/clientCom",
+    label: "Host Communication",
+    href: "/com/host/hostCom",
     icon: "MessageCircle",
   },
   {
     id: 3,
-    label: "Client Features",
-    href: "/com/clientFeatures",
+    label: "Host Features",
+    href: "/com/host/hostFeatures",
     icon: "LayoutGrid",
   },
-  { id: 5, label: "Community", href: "/com/community", icon: "Users" },
-  { id: 6, label: "Loyalty", href: "/com/loyalty", icon: "Gift" },
-  { id: 7, label: "Host Communication", href: "/com/hostCom", icon: "Phone" },
-  { id: 8, label: "Host Features", href: "/com/hostFeatures", icon: "Home" },
-  { id: 9, label: "Invest", href: "/com/invest", icon: "DollarSign" },
-  { id: 10, label: "Pricing", href: "/com/pricing", icon: "Tag" },
-  { id: 11, label: "Our Story", href: "/com/story", icon: "BookOpen" },
-  { id: 12, label: "Win-Win", href: "/com/winWin", icon: "Handshake" },
+  { id: 10, label: "Pricing", href: "/com/host/pricing", icon: "Tag" },
   { id: 13, label: "Links", href: "/com/links", icon: "Link" },
 ];
 

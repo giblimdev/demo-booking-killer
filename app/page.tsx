@@ -22,7 +22,6 @@ export default function page() {
     setIsVisible(true);
   }, []);
 
-
   // Données réutilisables
   const comparisonData = {
     them: [
@@ -190,33 +189,22 @@ export default function page() {
               {/* CTA */}
               <div className="space-y-6">
                 <Link href={"/com/client"}>
-                  <button
-                    className="m-2 group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50"
-                  >
-                    <span className="relative">
-                      🔥 espace Clients
-                      </span>
+                  <button className="m-2 group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50">
+                    <span className="relative">🔥 Espace Clients</span>
                   </button>
                 </Link>
                 <Link href={"/demo"}>
-                  <button
-                    className="m-2 group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50"
-                  >
+                  <button className="m-2 group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50">
                     <span className="relative">
                       🔥 ESSAYER LA DÉMO GRATUITE
                     </span>
                   </button>
                 </Link>
-                               <Link href={"/com/host"}>
-                  <button
-                    className="m-2 group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50"
-                  >
-                    <span className="relative">
-                      🔥 espace Hébergeurs
-                      </span>
+                <Link href={"/com/host"}>
+                  <button className="m-2 group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50">
+                    <span className="relative">🔥 Espace Hébergeurs</span>
                   </button>
                 </Link>
- 
 
                 <p className="text-lg text-gray-300 my-4">
                   **AUCUNE CARTE REQUISE** • **SANS ENGAGEMENT** • **100%
@@ -337,15 +325,11 @@ export default function page() {
             </p>
 
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-              <button
-                className="group bg-gradient-to-r from-yellow-500 to-red-500 hover:from-yellow-600 hover:to-red-600 text-black font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
-              >
+              <button className="group bg-gradient-to-r from-yellow-500 to-red-500 hover:from-yellow-600 hover:to-red-600 text-black font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl">
                 🚀 <strong>ESSAYER GRATUITEMENT</strong>
               </button>
 
-              <button
-                className="group bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
-              >
+              <button className="group bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl">
                 💰 <strong>DEVENIR HÔTE</strong> (0% COMMISSION)
               </button>
             </div>
@@ -356,6 +340,13 @@ export default function page() {
             </div>
           </div>
         </section>
+      </div>
+      <div className="container mx-auto text-center">
+        <Link href={"/com/invest"}>
+          <button className="m-2 group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50">
+            <span className="relative">🔥 Espace Investiseurs</span>
+          </button>
+        </Link>
       </div>
     </div>
   );

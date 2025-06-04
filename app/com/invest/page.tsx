@@ -10,6 +10,7 @@ import {
   BarChart2,
   Shield,
 } from "lucide-react";
+import HeaderNav from "@/components/componentsDemo/headerDemo/headerDemo";
 
 export default function BookingLinks() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -187,6 +188,8 @@ export default function BookingLinks() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white font-sans p-4 md:p-8">
+      <HeaderNav />
+      
       <motion.div
         className="max-w-6xl mx-auto"
         initial={fadeIn.initial}

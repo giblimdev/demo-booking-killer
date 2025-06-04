@@ -6,7 +6,7 @@ import * as LucideIcons from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-const navLinks = [{ id: 1, label: "Home", href: "/demo", icon: "Home" }];
+const navLinks = [{ id: 1, label: "Home", href: "/", icon: "Home" }];
 
 export default function HeaderNav({
   onLinkClick,
