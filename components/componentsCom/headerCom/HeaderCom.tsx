@@ -31,13 +31,13 @@ const navLinks = [
   { id: 13, label: "Links", href: "/com/links", icon: "Link" },
 ];
 
-export default function HeaderNav({
+export default function HeaderNavCom({
   onLinkClick,
 }: {
   onLinkClick?: () => void;
 }) {
   return (
-    <nav className="flex flex-col md:flex-row md:space-x-6 md:space-y-0 space-y-2 md:items-center">
+    <nav className="flex flex-col md:flex-row md:space-x-6 md:space-y-0 space-y-2 md:items-center bg-white">
       {navLinks.map(({ id, label, href, icon }) => {
         const Icon = (LucideIcons[icon as keyof typeof LucideIcons] ||
           ArrowRight) as LucideIcon;

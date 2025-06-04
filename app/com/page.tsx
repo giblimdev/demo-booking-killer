@@ -22,9 +22,6 @@ export default function page() {
     setIsVisible(true);
   }, []);
 
-  const navigateTo = (path: string) => {
-    router.push(path);
-  };
 
   // Données réutilisables
   const comparisonData = {
@@ -192,10 +189,18 @@ export default function page() {
 
               {/* CTA */}
               <div className="space-y-6">
+                <Link href={"/com"}>
+                  <button
+                    className="m-2 group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50"
+                  >
+                    <span className="relative">
+                      🔥 Voir la com
+                    </span>
+                  </button>
+                </Link>
                 <Link href={"/demo"}>
                   <button
-                    onClick={() => navigateTo("/demo")}
-                    className="group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50"
+                    className="m-2 group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/50"
                   >
                     <span className="relative">
                       🔥 ESSAYER LA DÉMO GRATUITE
@@ -323,14 +328,12 @@ export default function page() {
 
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
               <button
-                onClick={() => navigateTo("/demo")}
                 className="group bg-gradient-to-r from-yellow-500 to-red-500 hover:from-yellow-600 hover:to-red-600 text-black font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
               >
                 🚀 <strong>ESSAYER GRATUITEMENT</strong>
               </button>
 
               <button
-                onClick={() => navigateTo("/become-host")}
                 className="group bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-black py-6 px-12 rounded-2xl text-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
               >
                 💰 <strong>DEVENIR HÔTE</strong> (0% COMMISSION)
