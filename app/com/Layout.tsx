@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import "../globals.css";
-import Header from "@/components/componentsCom/headerCom/HeaderCom";
+import HeaderCom from "@/components/componentsCom/headerCom/HeaderCom";
+import Footer from "@/components/componentsDemo/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,9 +17,10 @@ export const metadata: Metadata = {
 export default function ComLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <Header />
+      <HeaderCom />
 
-      <main>{children}</main>
+      <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   );
 }
