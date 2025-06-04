@@ -31,7 +31,7 @@ const navLinks = [
   { id: 13, label: "Links", href: "/com/links", icon: "Link" },
 ];
 
-export default function HeaderNavCom({
+export default function HeaderNavComHost({
   onLinkClick,
 }: {
   onLinkClick?: () => void;
