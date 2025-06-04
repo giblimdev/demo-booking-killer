@@ -20,7 +20,6 @@ const navLinks = [
     href: "/com/clientFeatures",
     icon: "LayoutGrid",
   },
-  { id: 4, label: "Loyalty Program", href: "/com/loyalty", icon: "Heart" },
   { id: 5, label: "Community", href: "/com/community", icon: "Users" },
   { id: 6, label: "Loyalty", href: "/com/loyalty", icon: "Gift" },
   { id: 7, label: "Host Communication", href: "/com/hostCom", icon: "Phone" },

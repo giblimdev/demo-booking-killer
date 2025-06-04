@@ -10,7 +10,7 @@ export default function LandingPage() {
     // Redirection automatique après 3 secondes
     const timer = setTimeout(() => {
       router.push("/com");
-    }, 0);
+    }, 500);
 
     // Nettoyage du timer si le composant est démonté
     return () => clearTimeout(timer);
