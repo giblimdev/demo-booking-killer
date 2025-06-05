@@ -22,7 +22,6 @@ const navLinks = [
   },
   { id: 4, label: "Pricing", href: "/com/host/pricing", icon: "Tag" },
   { id: 5, label: "Labels", href: "/com/host/label", icon: "Award" },
-  { id: 6, label: "Links", href: "/com/links", icon: "Link" },
 ];
 
 export default function HeaderNavComHost({
