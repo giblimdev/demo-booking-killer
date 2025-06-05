@@ -8,23 +8,24 @@ import type { LucideIcon } from "lucide-react";
 
 const navLinks = [
   { id: 1, label: "Home", href: "/", icon: "Home" },
+  { id: 2, label: "Manifest", href: "/com/client/story", icon: "BookOpen" },
   {
-    id: 2,
+    id: 3,
     label: "Client Communication",
     href: "/com/client/clientCom",
     icon: "MessageCircle",
   },
   {
-    id: 3,
+    id: 4,
     label: "Client Features",
     href: "/com/client/clientFeatures",
     icon: "LayoutGrid",
   },
   { id: 5, label: "Community", href: "/com/client/community", icon: "Users" },
   { id: 6, label: "Loyalty", href: "/com/client/loyalty", icon: "Gift" },
-  { id: 11, label: "Our Story", href: "/com/client/story", icon: "BookOpen" },
-  { id: 12, label: "Win-Win", href: "/com/client/winWin", icon: "Handshake" },
-  ];
+
+  { id: 7, label: "Win-Win", href: "/com/client/winWin", icon: "Handshake" },
+];
 
 export default function HeaderNavComClient({
   onLinkClick,

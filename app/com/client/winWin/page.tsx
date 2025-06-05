@@ -1,193 +1,249 @@
+"use client";
 import React from "react";
 
-export default function WinWinPage() {
+export default function RebelPage() {
   return (
     <div className="bg-gradient-to-br from-purple-900 via-blue-900 to-black min-h-screen">
       <div className="max-w-5xl mx-auto px-4 py-12 space-y-10 text-white">
-        {/* Section Titre */}
+        {/* Titre principal */}
         <section className="text-center space-y-2">
           <h1 className="text-3xl sm:text-4xl font-bold text-yellow-400">
-            💥 REBEL COIN : LA CRYPTO DU VOYAGEUR MODERNE
+            💥 $REBEL : LA CRYPTO QUI RÉVOLUTIONNE VOS VOYAGES
           </h1>
           <p className="italic text-yellow-200">
-            Token utilitaire ERC-20 sur Polygon – Frais quasi-nuls, respect de
-            la planète 🌍
+            Token ERC-20 sur Polygon – Frais quasi-nuls, Transactions éclair
           </p>
         </section>
 
-        {/* Section Parrainage */}
+        {/* Pourquoi $REBEL */}
         <section className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
           <h2 className="text-2xl font-semibold text-yellow-300">
-            🔄 Le Parrainage Rebelle 3.0
+            🔍 POURQUOI $REBEL ? L'ESSENCE EN 3 POINTS
           </h2>
-          <p className="text-white mt-2">
-            Des récompenses pour chaque action !
-          </p>
+          <ol className="list-decimal list-inside mt-4 space-y-3 text-white">
+            <li>
+              <span className="font-bold text-yellow-200">
+                Votre pouvoir d'achat = votre pouvoir de changement :
+              </span>{" "}
+              Chaque token finance des projets locaux ET vos économies.
+            </li>
+            <li>
+              <span className="font-bold text-yellow-200">
+                Transparence radicale :
+              </span>{" "}
+              Toutes les transactions traçables sur Polygonscan.
+            </li>
+            <li>
+              <span className="font-bold text-yellow-200">
+                Liberté sans frontières :
+              </span>{" "}
+              Échangez, donnez, convertissez – sans banques intermédiaires.
+            </li>
+          </ol>
+        </section>
+
+        {/* Fonctionnement Technique */}
+        <section className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+          <h2 className="text-2xl font-semibold text-yellow-300">
+            ⚙️ FONCTIONNEMENT TECHNIQUE : SIMPLE COMME BONJOUR
+          </h2>
           <table className="w-full mt-4 text-left border border-white/20">
             <thead className="bg-white/10">
               <tr>
                 <th className="px-4 py-2 border-b border-white/20 text-white">
-                  Action
+                  Élément
                 </th>
                 <th className="px-4 py-2 border-b border-white/20 text-white">
-                  $REBEL
-                </th>
-                <th className="px-4 py-2 border-b border-white/20 text-white">
-                  Valeur (€)
+                  Détails
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Parrainage vérifié
+                  Blockchain
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  50
-                </td>
-                <td className="px-4 py-2 border-b border-white/10 text-white">
-                  ≈ 5 €
+                  Polygon (réseau écologique 99% moins gourmand qu'Ethereum ♻️)
                 </td>
               </tr>
               <tr>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  1ère résa du filleul
+                  Portefeuille intégré
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  200
-                </td>
-                <td className="px-4 py-2 border-b border-white/10 text-white">
-                  ≈ 20 €
+                  Sécurisé dans votre espace membre → Aucune extension requise
                 </td>
               </tr>
               <tr>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  5 filleuls actifs
+                  Sécurité
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  500 (bonus)
+                  Smart contract audité par CertiK – Voir le rapport complet
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2 border-b border-white/10 text-white">
+                  Adresse du contrat
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  ≈ 50 €
+                  0x4a8fREBEL... (copiez-collez dans Metamask pour vérifier)
                 </td>
               </tr>
             </tbody>
           </table>
-          <p className="mt-4 text-yellow-300 font-semibold">
-            💸 Conversion : 100 $REBEL = 10 € de crédit voyage
-          </p>
         </section>
 
-        {/* Section Utilités */}
+        {/* Utiliser $REBEL */}
         <section className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
           <h2 className="text-2xl font-semibold text-yellow-300">
-            💎 Utilités concrètes du $REBEL
+            💎 UTILISER $REBEL : 4 FAÇONS CONCRÈTES
           </h2>
-          <ul className="list-disc list-inside mt-4 space-y-3 text-white">
+          <ol className="list-decimal list-inside mt-4 space-y-4 text-white">
             <li>
-              <strong className="text-yellow-200">Paiement partiel</strong> des
-              réservations sur DIRECT HORIZON (ex. 30% € / 70% $REBEL)
+              <span className="font-bold text-yellow-200">
+                Payer vos voyages :
+              </span>
+              <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                <li>
+                  10 $REBEL = 1€ de réduction sur toute réservation Direct
+                  Horizon.
+                </li>
+                <li>
+                  <span className="italic">
+                    Exemple : 1 000 $REBEL = 100€ de réduction sur ton séjour à
+                    Ushuaia.
+                  </span>
+                </li>
+              </ul>
             </li>
             <li>
-              <strong className="text-yellow-200">Accès VIP</strong> : early
-              booking & événements partenaires
+              <span className="font-bold text-yellow-200">
+                Soutenir des causes locales :
+              </span>
+              <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                <li>Don direct en 1 clic :</li>
+                <li>→ 100 $REBEL = 1 kit scolaire 🎒</li>
+                <li>→ 500 $REBEL = 5 arbres plantés 🌳</li>
+                <li>
+                  Bonus : Pour chaque don &gt; 10 000 $REBEL, Direct Horizon
+                  ajoute +10%.
+                </li>
+              </ul>
             </li>
             <li>
-              <strong className="text-yellow-200">Gouvernance</strong> : votez
-              les fonctionnalités et proposez des hôtels
+              <span className="font-bold text-yellow-200">
+                Convertir en euros :
+              </span>
+              <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                <li>
+                  Taux : 100 $REBEL = 10€ (moins 3% de frais de traitement).
+                </li>
+                <li>Minimum : 500 $REBEL → Recevez 48.50€ sur votre compte.</li>
+              </ul>
             </li>
             <li>
-              <strong className="text-yellow-200">Écosystème éthique</strong> :
-              nuits offertes & projets locaux 🌿
+              <span className="font-bold text-yellow-200">
+                Accéder à l'écosystème VIP :
+              </span>
+              <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                <li>500 $REBEL : Dégustation de vins avec un hôte toscan 🍷</li>
+                <li>
+                  1 000 $REBEL : Cours de surf avec un champion balinais 🏄‍♂️
+                </li>
+                <li>
+                  5 000 $REBEL : Voyage-testeur pour évaluer de nouvelles
+                  pépites ✨
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        {/* Burn Mechanism */}
+        <section className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+          <h2 className="text-2xl font-semibold text-yellow-300">
+            🔥 MÉCANISME DE BRÛLAGE ("BURN") : NOTRE ARME ANTI-INFLATION
+          </h2>
+          <ul className="list-disc list-inside mt-4 space-y-2 text-white">
+            <li>
+              Les tokens ont une durée de vie pour ne pas devenir un objet de
+              spéculation.
+            </li>
+            <li>
+              Objectif : favoriser l’utilisation des tokens → Augmenter la
+              valeur utile de chaque $REBEL.
             </li>
           </ul>
         </section>
 
-        {/* Section Tokenomics */}
+        {/* Impact */}
         <section className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
           <h2 className="text-2xl font-semibold text-yellow-300">
-            📊 Tokenomics simples & éthiques
+            🌍 IMPACT : VOS TOKENS CHANGENT LE MONDE (VRAIMENT)
           </h2>
           <table className="w-full mt-4 text-left border border-white/20">
             <thead className="bg-white/10">
               <tr>
                 <th className="px-4 py-2 border-b border-white/20 text-white">
-                  Paramètre
+                  Projet financé
                 </th>
                 <th className="px-4 py-2 border-b border-white/20 text-white">
-                  Valeur
+                  Seuil de $REBEL
                 </th>
                 <th className="px-4 py-2 border-b border-white/20 text-white">
-                  Détail
+                  Impact réel
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Supply
+                  École au Sénégal 🏫
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  10M $REBEL
+                  250 000 $REBEL
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Fixe
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Parrainage
-                </td>
-                <td className="px-4 py-2 border-b border-white/10 text-white">
-                  35%
-                </td>
-                <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Alimentation progressive
+                  1 salle de classe rénovée
                 </td>
               </tr>
               <tr>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Réserve
+                  Reforestation Amazonie 🌳
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  20%
+                  500 000 $REBEL
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Partenariats & développement
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Brûlage
-                </td>
-                <td className="px-4 py-2 border-b border-white/10 text-white">
-                  5%
-                </td>
-                <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Mensuel sur frais de plateforme
+                  5 000 arbres plantés
                 </td>
               </tr>
               <tr>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Staking
+                  Artisans Bali 🎨
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  15% APY
+                  100 000 $REBEL
                 </td>
                 <td className="px-4 py-2 border-b border-white/10 text-white">
-                  Hôteliers
+                  10 ateliers préservant la culture
                 </td>
               </tr>
             </tbody>
           </table>
+          <p className="mt-4 text-yellow-300">
+            → Vous votez pour le prochain projet via l’app ! 10 $REBEL = 1 vote.
+          </p>
         </section>
 
-        {/* Section Technique */}
+        {/* Implémentation Technique */}
         <section className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
           <h2 className="text-2xl font-semibold text-yellow-300">
             🛠 Implémentation Technique
           </h2>
-          <ul className="list-disc list-inside mt-4 space-y-3 text-white">
+          <ul className="list-disc list-inside mt-4 space-y-2 text-white">
             <li>Wallet intégré avec seed sécurisée + récupération sociale</li>
             <li>Aucune vente initiale : gains uniquement par actions</li>
             <li>Conversion auto en € pour grand public</li>
@@ -195,45 +251,73 @@ export default function WinWinPage() {
           </ul>
         </section>
 
-        {/* Section Scénarios */}
+        {/* Mot du fondateur */}
         <section className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-          <h2 className="text-2xl font-semibold text-yellow-300">
-            🌟 Scénarios concrets
+          <h2 className="text-xl font-bold text-yellow-300 mb-3">
+            📣 LE MOT DU FONDATEUR
           </h2>
-          <div className="grid md:grid-cols-2 gap-6 mt-4">
-            <div className="p-4 bg-indigo-900/50 rounded-lg">
-              <h3 className="font-bold text-indigo-300 mb-2">👤 Voyageur</h3>
-              <ul className="list-disc list-inside space-y-1 text-white">
-                <li>Parraine 3 amis → gagne 650 $REBEL (~65 €)</li>
-                <li>Utilise 300 $REBEL pour une résa</li>
-                <li>Stake le reste → 15% rendement</li>
-              </ul>
-            </div>
-            <div className="p-4 bg-green-900/50 rounded-lg">
-              <h3 className="font-bold text-green-300 mb-2">🏨 Hôtelier</h3>
-              <ul className="list-disc list-inside space-y-1 text-white">
-                <li>Reçoit 5% en $REBEL</li>
-                <li>Stake = Badge "Éco-Warrior"</li>
-                <li>Utilise tokens pour booster sa visibilité</li>
-              </ul>
-            </div>
-          </div>
+          <blockquote className="italic text-white border-l-4 border-yellow-300 pl-4">
+            « $REBEL n’est pas seulement une crypto.
+            <br />
+            C’est un coup de poing dans l’éco-système du tourisme.
+            <br />
+            Chaque token est une balle dans le barillet contre les
+            intermédiaires.
+            <br />
+            Votre portefeuille est votre vote quotidien pour un monde meilleur.
+            »
+            <br />
+            <span className="block mt-2 font-bold">
+              – Léa Martin, Co-fondatrice
+            </span>
+          </blockquote>
         </section>
 
-        {/* Section Pourquoi */}
+        {/* Call to Action */}
+        <section className="bg-yellow-600/20 p-6 rounded-lg text-center border border-yellow-500/30">
+          <h2 className="text-xl font-bold text-yellow-300">
+            🚀 PRÊT À REJOINDRE L'ÉCOSYSTÈME ?
+          </h2>
+          <a
+            href="https://directhorizon.com/rebel-wallet"
+            className="inline-block mt-4 px-8 py-4 bg-yellow-400 text-black rounded-full text-xl font-bold hover:bg-yellow-300 transition"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            💎 Accéder à mon portefeuille $REBEL
+          </a>
+          <p className="mt-4 text-sm text-yellow-200">
+            Avertissement : $REBEL est un token utilitaire, non destiné à la
+            spéculation. Valeur indicative : 10 $REBEL = 1€.
+          </p>
+        </section>
+
+        {/* FAQ */}
         <section className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
           <h2 className="text-2xl font-semibold text-yellow-300">
-            📈 Pourquoi ça marche ?
+            ❓ QUESTIONS FRÉQUENTES (FAQ REBEL)
           </h2>
           <ul className="list-disc list-inside mt-4 space-y-3 text-white">
-            <li>Fidélisation & viralité naturelle</li>
-            <li>Image tech & moderne</li>
-            <li>Monétisation éthique & durable</li>
-            <li>Communauté engagée</li>
+            <li>
+              <span className="font-bold">
+                Comment transférer mes $REBEL vers Metamask ?
+              </span>
+              <br />
+              Voir tuto.
+            </li>
+            <li>
+              <span className="font-bold">
+                Les tokens peuvent-ils prendre de la valeur ?
+              </span>
+              <br />
+              Non, ce n’est pas un investissement. Leur valeur utilitaire est
+              fixe : 10 $REBEL = 1€ chez Direct Horizon.
+            </li>
+            <li>…</li>
           </ul>
         </section>
 
-        {/* Section Lancement */}
+        {/* Campagne Lancement */}
         <section className="bg-yellow-600/20 p-6 rounded-lg text-center border border-yellow-500/30">
           <h2 className="text-xl font-bold text-yellow-300">
             🔥 Campagne Lancement
