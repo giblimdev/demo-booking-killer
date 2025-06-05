@@ -20,8 +20,9 @@ const navLinks = [
     href: "/com/host/hostFeatures",
     icon: "LayoutGrid",
   },
-  { id: 10, label: "Pricing", href: "/com/host/pricing", icon: "Tag" },
-  { id: 13, label: "Links", href: "/com/links", icon: "Link" },
+  { id: 4, label: "Pricing", href: "/com/host/pricing", icon: "Tag" },
+  { id: 5, label: "Labels", href: "/com/host/label", icon: "Award" },
+  { id: 6, label: "Links", href: "/com/links", icon: "Link" },
 ];
 
 export default function HeaderNavComHost({
@@ -30,7 +31,7 @@ export default function HeaderNavComHost({
   onLinkClick?: () => void;
 }) {
   return (
-    <nav className="flex flex-col md:flex-row md:space-x-6 md:space-y-0 space-y-2 md:items-center bg-white">
+    <nav className="flex flex-col md:flex-row md:space-x-6 md:space-y-0 space-y-2 md:items-center bg-white p-5">
       {navLinks.map(({ id, label, href, icon }) => {
         const Icon = (LucideIcons[icon as keyof typeof LucideIcons] ||
           ArrowRight) as LucideIcon;

@@ -1,492 +1,406 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
-import Head from 'next/head';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import Head from "next/head";
+import {
+  Zap,
+  BarChart,
+  Gift,
+  Shield,
+  PlusCircle,
+  Star,
+  Smartphone,
+} from "lucide-react";
 
-export default function MonetizationPlan() {
-  // Animations
+export default function PricingPage() {
+  const [activeTab, setActiveTab] = useState("free");
+
+  // Animation presets
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.5 },
   };
 
-  const scaleUp = {
-    whileHover: { scale: 1.03 },
-    whileTap: { scale: 0.98 }
-  };
+  // Pricing plans
+  const plans = [
+    {
+      key: "free",
+      name: "Offre Gratuite",
+      price: "0€ / mois",
+      badge: "Toujours disponible",
+      color: "green",
+      description:
+        "Publiez votre hôtel gratuitement, recevez des réservations directes sans commission, profitez d’un tableau de bord basique et de la messagerie.",
+    },
+    {
+      key: "premium",
+      name: "Offre Premium",
+      price: "À partir de 19€ / mois",
+      badge: "Recommandé",
+      color: "red",
+      description:
+        "Visibilité boostée, outils avancés (prix dynamique, check-in digital, analyses pro), 2 Boosts inclus/mois, garantie satisfait ou remboursé.",
+    },
+    {
+      key: "gestion",
+      name: "Gestion Pro",
+      price: "3€ / réservation",
+      badge: "Performance",
+      color: "blue",
+      description:
+        "Centralisez vos annonces, automatisez la gestion, synchronisez vos calendriers, statistiques ultra-détaillées. Payez uniquement à la performance.",
+    },
+  ];
+
+  // Premium benefits
+  const premiumBenefits = [
+    {
+      icon: <BarChart size={24} />,
+      title: "Taux de remplissage boosté",
+      description: "+40% grâce aux outils de visibilité avancés.",
+    },
+    {
+      icon: <Gift size={24} />,
+      title: "Gain net par chambre",
+      description: "+25€/nuit en moyenne grâce aux commissions évitées.",
+    },
+    {
+      icon: <Shield size={24} />,
+      title: "Sécurité renforcée",
+      description: "Protection contre fraudes et annulations abusives.",
+    },
+    {
+      icon: <Smartphone size={24} />,
+      title: "Gestion Pro",
+      description:
+        "Centralisation, automatisations, synchronisation multi-canaux, reporting avancé.",
+    },
+  ];
+
+  // Gestion Pro description
+  const gestionProDesc = (
+    <div className="bg-gray-900 border-l-4 border-red-600 p-6 rounded-xl my-8 flex items-start">
+      <Smartphone className="text-red-500 mr-4 mt-1" size={36} />
+      <div>
+        <h3 className="text-xl font-bold mb-2">
+          Nouveau : Gestion Pro Direct Horizon
+        </h3>
+        <p className="mb-2">
+          <b>Libérez-vous de la gestion chronophage !</b> Notre application de
+          gestion professionnelle (<b>3 €/réservation</b>) centralise toutes vos
+          annonces, automatise vos tâches, synchronise vos calendriers sur tous
+          les canaux et vous donne accès à des statistiques ultra-détaillées.
+        </p>
+        <ul className="list-disc ml-6 text-gray-300">
+          <li>Centralisation multi-annonces et multi-canaux</li>
+          <li>Automatisations avancées (prix, communication, check-in/out)</li>
+          <li>Statistiques et reporting pro</li>
+          <li>Support prioritaire</li>
+        </ul>
+        <div className="mt-2 text-sm text-gray-400">
+          <b>Sans engagement.</b> Payez seulement si vous recevez des
+          réservations via l’app Gestion Pro.
+        </div>
+      </div>
+    </div>
+  );
+
+  // Onboarding steps
+  const onboarding = [
+    {
+      num: 1,
+      title: "Créez votre annonce gratuitement",
+      desc: "Publiez votre hôtel sans frais, en moins de 8 minutes.",
+      icon: <PlusCircle size={32} className="text-red-500 mx-auto mb-2" />,
+    },
+    {
+      num: 2,
+      title: "Proposez des offres et promotions",
+      desc: "Attirez plus de voyageurs avec vos propres offres spéciales, même en version gratuite.",
+      icon: <Gift size={32} className="text-yellow-400 mx-auto mb-2" />,
+    },
+    {
+      num: 3,
+      title: "Débloquez plus de puissance",
+      desc: "Passez au Premium ou activez Gestion Pro pour aller plus loin (visibilité, automatisations, multi-annonces, statistiques avancées…).",
+      icon: <Star size={32} className="text-amber-400 mx-auto mb-2" />,
+    },
+  ];
+
+  // Testimonials
+  const testimonials = [
+    {
+      text: "Mon taux de remplissage a bondi de 40% grâce à Direct Horizon.",
+      author: "Chloé, éco-lodge dans les Alpes",
+    },
+    {
+      text: "Mes revenus nets/nuit sont passés de 58€ à 82€.",
+      author: null,
+    },
+    {
+      text: "La Gestion Pro a simplifié la vie de toute mon équipe : tout est centralisé, je gagne du temps et je paie seulement quand je reçois une réservation.",
+      author: "Marc, hôtelier à Bordeaux",
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-red-900 to-black text-white font-sans">
       <Head>
-        <title>Direct Horizon | Plan de Monétisation Rebelle</title>
-        <meta name="description" content="Notre modèle économique éthique qui défie les géants du voyage" />
+        <title>Direct Horizon | Tarifs Hôteliers</title>
+        <meta
+          name="description"
+          content="Tarification transparente et agressive pour hôtels – Direct Horizon"
+        />
       </Head>
 
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-red-700 to-gray-900 py-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-6"
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={fadeIn.transition}
-          >
-            <span className="block mb-2">NOTRE MODÈLE ÉCONOMIQUE</span>
-            <span className="text-red-400">REBELLE & RENTABLE</span>
-          </motion.h1>
-          
-          <motion.div
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={{ ...fadeIn.transition, delay: 0.2 }}
-          >
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8">
-              Transformer l'industrie du voyage sans trahir nos valeurs
-            </p>
-            <div className="bg-red-600 py-4 px-6 rounded-lg inline-block">
-              <p className="text-xl font-bold">LA MISE EN RELATION EST GRATUITE ET LE RESTERA</p>
+      {/* Hero */}
+      <div className="bg-gradient-to-r from-red-800 to-gray-900 py-20 px-4 text-center">
+        <motion.h1 className="text-4xl md:text-6xl font-bold mb-6" {...fadeIn}>
+          <span className="block mb-2">
+            💥 DIRECT HORIZON – DITES ADIEU AUX COMMISSIONS
+          </span>
+        </motion.h1>
+        <motion.p
+          className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
+          {...fadeIn}
+        >
+          Gardez 100% de vos revenus, investissez dans votre liberté, pas dans
+          les poches des plateformes.
+        </motion.p>
+        <motion.div {...fadeIn}>
+          <div className="inline-flex bg-red-700 px-6 py-3 rounded-full font-bold">
+            ZÉRO COMMISSION SUR LES RÉSERVATIONS - TOUJOURS
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Tabs */}
+      <div className="max-w-4xl mx-auto mt-12 px-4">
+        <div className="flex border-b border-gray-700">
+          {plans.map((plan) => (
+            <motion.button
+              key={plan.key}
+              className={`py-4 px-6 text-lg font-bold flex items-center transition-colors duration-300 ease-in-out rounded-t-lg ${
+                activeTab === plan.key
+                  ? `text-${plan.color}-700 border-b-4 border-${plan.color}-600 bg-${plan.color}-50`
+                  : "text-gray-400 border-b-4 border-transparent hover:text-red-600 hover:border-red-600"
+              }`}
+              onClick={() => setActiveTab(plan.key)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ borderBottomWidth: 0 }}
+              animate={{ borderBottomWidth: activeTab === plan.key ? 4 : 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              {plan.name}
+              <span
+                className={`ml-2 bg-${plan.color}-600 text-xs px-2 py-1 rounded font-semibold text-white shadow-sm`}
+              >
+                {plan.badge}
+              </span>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      {/* Pricing Table */}
+      <div className="max-w-6xl mx-auto py-12 px-4">
+        <div className="grid md:grid-cols-3 gap-8">
+          {plans.map((plan) => (
+            <motion.div
+              key={plan.key}
+              className={`bg-gray-800 rounded-xl border-2 border-${plan.color}-600 p-8 text-center`}
+              {...fadeIn}
+            >
+              <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+              <div
+                className={`text-3xl font-extrabold mb-4 text-${plan.color}-400`}
+              >
+                {plan.price}
+              </div>
+              <p className="mb-6">{plan.description}</p>
+              {plan.key === "premium" && (
+                <div className="mt-4 text-sm text-gray-300"></div>
+              )}
+              {plan.key === "gestion" && (
+                <div className="mt-4 text-sm text-gray-300"></div>
+              )}
+            </motion.div>
+          ))}
+        </div>
+        {activeTab === "gestion" && gestionProDesc}
+      </div>
+
+      {/* Premium Benefits */}
+      {(activeTab === "premium" || activeTab === "gestion") && (
+        <div className="py-16 px-4 bg-gradient-to-r from-gray-900 to-black">
+          <div className="max-w-6xl mx-auto">
+            <motion.div {...fadeIn}>
+              <h2 className="text-3xl font-bold mb-12 text-center">
+                <span className="text-red-500">
+                  Pourquoi passer au Premium ou à la Gestion Pro ?
+                </span>
+                <span className="block text-xl mt-2">
+                  Investissez moins qu'une nuit annulée, gagnez en liberté et en
+                  efficacité
+                </span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                {premiumBenefits.map((benefit, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="bg-gray-800 border border-red-600 rounded-xl p-6"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="text-red-500 mb-4">{benefit.icon}</div>
+                    <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
+                    <p className="text-gray-400">{benefit.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+              <div className="mt-12 bg-gradient-to-r from-red-800 to-red-900 rounded-xl p-6 border border-red-600">
+                <div className="flex flex-col md:flex-row items-center justify-between">
+                  <div className="mb-6 md:mb-0">
+                    <h3 className="text-xl font-bold mb-2">
+                      Garantie "Satisfait ou Remboursé"
+                    </h3>
+                  </div>
+                  <motion.button
+                    className="px-8 py-3 bg-white text-red-700 rounded-full font-bold flex items-center"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Essai gratuit 30 jours
+                    <Zap className="ml-2" fill="currentColor" />
+                  </motion.button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      )}
+
+      {/* Onboarding Steps */}
+      <div className="max-w-6xl mx-auto py-12 px-4">
+        <h2 className="text-2xl font-bold mb-8 text-center text-red-400">
+          Lancez-vous en 3 étapes simples
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {onboarding.map((step, idx) => (
+            <motion.div
+              key={idx}
+              className="bg-gray-800 rounded-xl p-6 border border-gray-700 text-center"
+              {...fadeIn}
+            >
+              {step.icon}
+              <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+              <p className="mb-2">{step.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Visual Comparison */}
+      <div className="max-w-4xl mx-auto py-12 px-4">
+        <h2 className="text-2xl font-bold mb-6 text-center text-red-400">
+          Comparatif
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+            <h3 className="text-xl font-bold mb-4 text-center">
+              Plateformes classiques
+            </h3>
+            <ul className="space-y-3">
+              <li>Commissions 15-35% cachées</li>
+              <li>Clients anonymes</li>
+              <li>Support bot</li>
+              <li>Avis non modérés</li>
+              <li>Argent bloqué 15 jours</li>
+              <li>Mise en avant payante limitée</li>
+            </ul>
+          </div>
+          <div className="bg-gray-900 rounded-xl p-6 border border-red-600">
+            <h3 className="text-xl font-bold mb-4 text-center text-red-400">
+              Direct Horizon
+            </h3>
+            <ul className="space-y-3">
+              <li>0% sur la mise en relation</li>
+              <li>Voyageurs vérifiés</li>
+              <li>Assistance humaine</li>
+              <li>Avis équitables et constructifs</li>
+              <li>Paiement en 24h</li>
+              <li>Boosts & promos accessibles à tous</li>
+              <li>
+                Gestion Pro : payez seulement si vous recevez une réservation
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials */}
+      <div className="py-16 px-4 bg-gradient-to-r from-gray-900 to-black text-center">
+        <h2 className="text-2xl font-bold mb-8 text-red-400">
+          Ils ont choisi Direct Horizon
+        </h2>
+        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          {testimonials.map((t, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-800 rounded-xl p-6 border border-gray-700"
+            >
+              <p className="text-lg mb-2">"{t.text}"</p>
+              {t.author && (
+                <span className="text-gray-400 text-sm">– {t.author}</span>
+              )}
             </div>
+          ))}
+        </div>
+        <blockquote className="mt-12 text-xl italic text-gray-300 max-w-2xl mx-auto">
+          “Ici, vous n'êtes pas un numéro de contrat. Vous êtes un architecte
+          d'expériences, un gardien de terroir, un rebelle qui vit de sa
+          passion.” – Marco, hôte à Lisbonne
+        </blockquote>
+      </div>
+
+      {/* Final CTA */}
+      <div className="py-20 px-4 bg-gradient-to-r from-red-700 to-red-900 text-center">
+        <div className="max-w-4xl mx-auto">
+          <motion.div {...fadeIn}>
+            <h2 className="text-4xl font-bold mb-6">
+              Passez en mode libéré – Créez votre profil hôtelier en 8 minutes
+            </h2>
+            <p className="text-xl mb-10 max-w-2xl mx-auto">
+              Aucun engagement. Désactivez simplement vos autres plateformes
+              quand vous êtes complet.
+            </p>
+            <a
+              href="https://directhorizon.com/hotels-revolution"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <motion.button
+                className="px-8 py-4 bg-white text-red-700 rounded-full font-bold flex items-center justify-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Zap className="mr-2" fill="currentColor" />
+                Commencer gratuitement
+              </motion.button>
+            </a>
           </motion.div>
         </div>
       </div>
 
-      {/* Core Principle */}
-      <section className="py-16 px-4 bg-gray-800">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-gray-900 border-2 border-red-600 rounded-xl p-8">
-            <h2 className="text-3xl font-bold mb-6 text-center text-red-500">
-              NOTRE ENGAGEMENT ABSOLU
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center p-6 bg-gray-800 rounded-lg border border-red-500">
-                <div className="text-5xl mb-4">🚫</div>
-                <h3 className="text-xl font-bold mb-2">ZERO COMMISSION</h3>
-                <p>Jamais sur les réservations</p>
-              </div>
-              <div className="text-center p-6 bg-gray-800 rounded-lg border border-red-500">
-                <div className="text-5xl mb-4">💯</div>
-                <h3 className="text-xl font-bold mb-2">100% TRANSPARENCE</h3>
-                <p>Pas de frais cachés, jamais</p>
-              </div>
-              <div className="text-center p-6 bg-gray-800 rounded-lg border border-red-500">
-                <div className="text-5xl mb-4">⚖️</div>
-                <h3 className="text-xl font-bold mb-2">ÉQUILIBRE</h3>
-                <p>Gagnant-gagnant pour tous</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Freemium Model */}
-      <section className="py-16 px-4 bg-gray-900">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={{ ...fadeIn.transition, delay: 0.1 }}
-          >
-            <h2 className="text-3xl font-bold mb-6 text-center text-red-500">
-              FREEMIUM ÉTHIQUE POUR HÔTELIERS
-            </h2>
-            <p className="text-center text-xl mb-10 max-w-3xl mx-auto">
-              Un modèle équitable qui valorise votre travail sans vous exploiter
-            </p>
-
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-red-600 text-left">
-                    <th className="p-4 font-bold">ACCÈS</th>
-                    <th className="p-4 font-bold">OFFRE GRATUITE</th>
-                    <th className="p-4 font-bold">OFFRE PREMIUM</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-gray-700 hover:bg-gray-800">
-                    <td className="p-4 font-semibold">Fonctionnalités de base</td>
-                    <td className="p-4">
-                      <ul className="space-y-2">
-                        <li className="flex items-start">
-                          <span className="text-green-400 mr-2">✓</span> Mise en relation directe
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-green-400 mr-2">✓</span> Profil hôtel + photos
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-green-400 mr-2">✓</span> Messagerie voyageur
-                        </li>
-                      </ul>
-                    </td>
-                    <td className="p-4">
-                      <ul className="space-y-2">
-                        <li className="flex items-start">
-                          <span className="text-red-400 mr-2">★</span> Suite de gestion complète
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-red-400 mr-2">★</span> Check-in/out digital
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-red-400 mr-2">★</span> Gestion multi-propriétés
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-700 hover:bg-gray-800">
-                    <td className="p-4 font-semibold">Visibilité</td>
-                    <td className="p-4">
-                      <ul className="space-y-2">
-                        <li className="flex items-start">
-                          <span className="text-green-400 mr-2">✓</span> Référencement basique
-                        </li>
-                      </ul>
-                    </td>
-                    <td className="p-4">
-                      <ul className="space-y-2">
-                        <li className="flex items-start">
-                          <span className="text-red-400 mr-2">★</span> Boost intelligente
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-red-400 mr-2">★</span> Mise en avant géolocalisée
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-red-400 mr-2">★</span> Badge "Coup de cœur local"
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-700 hover:bg-gray-800">
-                    <td className="p-4 font-semibold">Analytics</td>
-                    <td className="p-4">
-                      <ul className="space-y-2">
-                        <li className="flex items-start">
-                          <span className="text-gray-400 mr-2">✗</span> Données limitées
-                        </li>
-                      </ul>
-                    </td>
-                    <td className="p-4">
-                      <ul className="space-y-2">
-                        <li className="flex items-start">
-                          <span className="text-red-400 mr-2">★</span> Dashboard pro
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-red-400 mr-2">★</span> ROI par canal
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-red-400 mr-2">★</span> Comparatif prix/marché
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-800">
-                    <td className="p-4 font-semibold">Tarification</td>
-                    <td className="p-4 text-green-400 font-bold">TOUJOURS GRATUIT</td>
-                    <td className="p-4">
-                      <span className="bg-red-600 py-1 px-3 rounded font-bold">À partir de 19€/mois</span>
-                      <p className="mt-2 text-sm">ou 0.5% par réservation</p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Revenue Pillars */}
-      <section className="py-16 px-4 bg-gray-800">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={{ ...fadeIn.transition, delay: 0.2 }}
-          >
-            <h2 className="text-3xl font-bold mb-6 text-center text-red-500">
-              3 PILIERS DE REVENUS
-            </h2>
-            <p className="text-center text-xl mb-10 max-w-3xl mx-auto">
-              Un modèle économique diversifié sans commission sur les réservations
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              <motion.div 
-                className="bg-gray-900 border-2 border-red-500 rounded-xl p-6"
-                {...scaleUp}
-              >
-                <div className="text-red-500 text-4xl mb-4">1</div>
-                <h3 className="text-xl font-bold mb-4">ABONNEMENT "ESSENTIEL"</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="text-red-400 mr-2">▹</span> 19-49€/mois selon la taille
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-red-400 mr-2">▹</span> Outils de gestion avancés
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-red-400 mr-2">▹</span> 2 "Boosts" mensuels gratuits
-                  </li>
-                </ul>
-                <div className="mt-4 p-3 bg-gray-800 rounded-lg">
-                  <p className="font-bold">Argument choc :</p>
-                  <p>"Payez moins qu'une nuit annulée via Booking !"</p>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="bg-gray-900 border-2 border-red-500 rounded-xl p-6"
-                {...scaleUp}
-              >
-                <div className="text-red-500 text-4xl mb-4">2</div>
-                <h3 className="text-xl font-bold mb-4">PUBLICITÉ CIBLÉE & ÉTHIQUE</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="text-red-400 mr-2">▹</span> Boost Intelligente (Pay-per-Use)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-red-400 mr-2">▹</span> 3€/jour : Mise en avant locale
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-red-400 mr-2">▹</span> 10€ : Badge "Élu des voyageurs"
-                  </li>
-                </ul>
-                <div className="mt-4 p-3 bg-gray-800 rounded-lg">
-                  <p className="font-bold">Notre engagement :</p>
-                  <p>Prix plafonnés + transparence totale des enchères</p>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="bg-gray-900 border-2 border-red-500 rounded-xl p-6"
-                {...scaleUp}
-              >
-                <div className="text-red-500 text-4xl mb-4">3</div>
-                <h3 className="text-xl font-bold mb-4">SERVICES À VALEUR AJOUTÉE</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="text-red-400 mr-2">▹</span> Formations premium (49-99€)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-red-400 mr-2">▹</span> Solution Eco-Certification (199€/an)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-red-400 mr-2">▹</span> Intégration API (29€/mois)
-                  </li>
-                </ul>
-                <div className="mt-4 p-3 bg-gray-800 rounded-lg">
-                  <p className="font-bold">Impact :</p>
-                  <p>Augmentation moyenne de 15% des résas avec le label Green Rebel</p>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Financial Projection */}
-      <section className="py-16 px-4 bg-gray-900">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={{ ...fadeIn.transition, delay: 0.3 }}
-          >
-            <h2 className="text-3xl font-bold mb-6 text-center text-red-500">
-              MODÈLE ÉCONOMIQUE PRÉVISIONNEL
-            </h2>
-            <p className="text-center mb-10">(Pour 1 000 hôteliers actifs)</p>
-
-            <div className="bg-gray-800 rounded-xl p-6">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center mb-6 font-bold">
-                <div className="p-4 bg-red-600 rounded-lg">Source de revenus</div>
-                <div className="p-4 bg-red-600 rounded-lg">Taux d'adoption</div>
-                <div className="p-4 bg-red-600 rounded-lg">Revenu mensuel</div>
-                <div className="p-4 bg-red-600 rounded-lg">Potentiel annuel</div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-                  <div className="p-4 bg-gray-700 rounded-lg">Abonnements Essentials</div>
-                  <div className="p-4 bg-gray-700 rounded-lg">35%</div>
-                  <div className="p-4 bg-gray-700 rounded-lg">12 250€</div>
-                  <div className="p-4 bg-gray-700 rounded-lg font-bold text-green-400">147 000€</div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-                  <div className="p-4 bg-gray-700 rounded-lg">Boosts publicitaires</div>
-                  <div className="p-4 bg-gray-700 rounded-lg">25%</div>
-                  <div className="p-4 bg-gray-700 rounded-lg">15 000€</div>
-                  <div className="p-4 bg-gray-700 rounded-lg font-bold text-green-400">180 000€</div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-                  <div className="p-4 bg-gray-700 rounded-lg">Services premium</div>
-                  <div className="p-4 bg-gray-700 rounded-lg">15%</div>
-                  <div className="p-4 bg-gray-700 rounded-lg">6 750€</div>
-                  <div className="p-4 bg-gray-700 rounded-lg font-bold text-green-400">81 000€</div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center mt-8">
-                  <div className="p-4 bg-gray-800 rounded-lg font-bold">TOTAL</div>
-                  <div className="p-4 bg-gray-800 rounded-lg">-</div>
-                  <div className="p-4 bg-gray-800 rounded-lg font-bold text-xl">34 000€</div>
-                  <div className="p-4 bg-gray-800 rounded-lg font-bold text-xl text-green-400">408 000€</div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Killer Argument */}
-      <section className="py-16 px-4 bg-gradient-to-r from-red-700 to-red-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={{ ...fadeIn.transition, delay: 0.4 }}
-          >
-            <h2 className="text-3xl font-bold mb-8">ARGUMENT IMBATTABLE</h2>
-            
-            <div className="bg-black bg-opacity-30 p-8 rounded-xl mb-10">
-              <p className="text-xl mb-6">
-                "Avec nous, vous gardez <span className="font-bold text-green-400">97%</span> du prix de la nuit
-                <br />
-                (vs <span className="font-bold text-red-400">60-70%</span> ailleurs)."
-              </p>
-              <p className="text-xl">
-                "Investissez <span className="font-bold">3%</span> dans des outils qui vous libèrent,
-                <br />pas qui vous exploitent."
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 text-left">
-              <div className="bg-gray-900 p-6 rounded-xl">
-                <h3 className="text-xl font-bold mb-4 text-red-400">Plateforme traditionnelle</h3>
-                <p>Chambre à 100€ → 65€ pour l'hôtel</p>
-                <div className="mt-4 h-4 bg-gray-700 rounded-full overflow-hidden">
-                  <div className="h-full bg-red-600 rounded-full" style={{ width: '35%' }}></div>
-                </div>
-                <p className="mt-2 text-red-400">35% de commission</p>
-              </div>
-
-              <div className="bg-gray-900 p-6 rounded-xl border-2 border-green-500">
-                <h3 className="text-xl font-bold mb-4 text-green-400">DIRECT HORIZON</h3>
-                <p>Chambre à 100€ → 97€ pour l'hôtel</p>
-                <div className="mt-4 h-4 bg-gray-700 rounded-full overflow-hidden">
-                  <div className="h-full bg-green-500 rounded-full" style={{ width: '97%' }}></div>
-                </div>
-                <p className="mt-2">- 3€ d'abonnement outils = <span className="font-bold text-green-400">94€ net</span></p>
-                <p className="mt-2 text-xl font-bold text-green-400">+45% vs Booking</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Adoption Strategy */}
-      <section className="py-16 px-4 bg-gray-800">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={{ ...fadeIn.transition, delay: 0.5 }}
-          >
-            <h2 className="text-3xl font-bold mb-6 text-center text-red-500">
-              TACTIQUES D'ADOPTION REBELLES
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gray-900 p-6 rounded-xl border border-red-500">
-                <h3 className="text-xl font-bold mb-4 text-red-400">1. PÉRIODE D'ESSAI OFFERTE</h3>
-                <p>3 mois premium offerts pour tout hôtelier inscrit avant 2025</p>
-              </div>
-
-              <div className="bg-gray-900 p-6 rounded-xl border border-red-500">
-                <h3 className="text-xl font-bold mb-4 text-red-400">2. GARANTIE "NO BRAINER"</h3>
-                <p>
-                  "Si nos outils ne vous font pas économiser 100€/mois → 
-                  <span className="font-bold text-green-400"> 1 an gratuit</span>"
-                </p>
-              </div>
-
-              <div className="bg-gray-900 p-6 rounded-xl border border-red-500">
-                <h3 className="text-xl font-bold mb-4 text-red-400">3. PROGRAMME AMBASSADEUR</h3>
-                <p>
-                  Parrainer un collègue = <span className="font-bold">1 mois offert</span>
-                  <br />
-                  Avis vérifié = <span className="font-bold">10 Boosts gratuits</span>
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why It Works */}
-      <section className="py-16 px-4 bg-gray-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={fadeIn.initial}
-            animate={fadeIn.animate}
-            transition={{ ...fadeIn.transition, delay: 0.6 }}
-          >
-            <h2 className="text-3xl font-bold mb-6 text-red-500">
-              POURQUOI ÇA FONCTIONNE ?
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-8 text-left">
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <span className="text-red-500 text-xl mr-2">▹</span>
-                  <span><span className="font-bold">ZERO commission</span> sur réservation</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 text-xl mr-2">▹</span>
-                  <span>Alignement intérêts : plus l'hôtelier réussit, plus il paye (volontairement !)</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 text-xl mr-2">▹</span>
-                  <span>Échelle progressive : pas de mur de paiement</span>
-                </li>
-              </ul>
-
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <span className="text-red-500 text-xl mr-2">▹</span>
-                  <span><span className="font-bold">Rentabilité rapide</span> : seuil à ~800 hôteliers premium</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 text-xl mr-2">▹</span>
-                  <span>Valeur perçue élevée : on paie pour gagner, pas pour exister</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 text-xl mr-2">▹</span>
-                  <span>Effet levier : utilise vos propres données comme argument commercial</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-12 bg-red-600 inline-block p-6 rounded-xl">
-              <p className="text-xl font-bold">
-                "M. Dupont, vos 30 résas/mois via nous vous ont fait économiser 1 200€ vs Booking.
-                <br />
-                Avec nos outils premium, vous pouvez passer à 50 résas sans frais supplémentaires. Essayez ?"
-              </p>
-            </div>
-
-            <div className="mt-10">
-              <h3 className="text-2xl font-bold mb-4">LA RÉBELLION S'AUTOFINANCE !</h3>
-              <div className="text-6xl">💥</div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="py-8 px-4 bg-black text-center border-t border-red-700">
-        <p className="text-lg">DIRECT HORIZON | Modèle Économique Éthique</p>
-        <p className="text-sm mt-2">Créé par des rebelles, pour des rebelles</p>
+        <p className="text-lg">
+          DIRECT HORIZON - Liberté, transparence, communauté et impact positif
+        </p>
+        <p className="text-sm mt-2">
+          Zéro commission sur réservations - Toujours
+        </p>
       </footer>
     </div>
   );
