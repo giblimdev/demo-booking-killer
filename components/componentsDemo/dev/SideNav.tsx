@@ -15,17 +15,30 @@ import {
   accessibilityOptions,
   parkingOptions,
   bedTypes,
-} from "@/lib/registatHotelItem";
+} from "@/lib/data/registatHotelItem";
 
 const SideNav = () => {
-  const [selectedDestinations, setSelectedDestinations] = useState<string[]>([]);
-  const [selectedRoomFeatures, setSelectedRoomFeatures] = useState<string[]>([]);
-  const [selectedHotelServices, setSelectedHotelServices] = useState<string[]>([]);
-  const [selectedAccessibility, setSelectedAccessibility] = useState<string[]>([]);
-  const [selectedHotelCharacteristics, setSelectedHotelCharacteristics] = useState<string[]>([]);
-  const [selectedParkingOptions, setSelectedParkingOptions] = useState<string[]>([]);
+  const [selectedDestinations, setSelectedDestinations] = useState<string[]>(
+    []
+  );
+  const [selectedRoomFeatures, setSelectedRoomFeatures] = useState<string[]>(
+    []
+  );
+  const [selectedHotelServices, setSelectedHotelServices] = useState<string[]>(
+    []
+  );
+  const [selectedAccessibility, setSelectedAccessibility] = useState<string[]>(
+    []
+  );
+  const [selectedHotelCharacteristics, setSelectedHotelCharacteristics] =
+    useState<string[]>([]);
+  const [selectedParkingOptions, setSelectedParkingOptions] = useState<
+    string[]
+  >([]);
   const [selectedBedTypes, setSelectedBedTypes] = useState<string[]>([]);
-  const [selectedAccommodationTypes, setSelectedAccommodationTypes] = useState<string[]>([]);
+  const [selectedAccommodationTypes, setSelectedAccommodationTypes] = useState<
+    string[]
+  >([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([10, 1000]);
 
   const handleSelection = (
@@ -60,7 +73,9 @@ const SideNav = () => {
       </div>
       <h2 className="text-lg font-bold text-gray-800 mb-1">Filtres</h2>
       <div className="mb-1 p-1 border rounded-lg">
-        <h3 className="text-sm font-medium text-gray-700 mb-1">Votre budget (par nuit)</h3>
+        <h3 className="text-sm font-medium text-gray-700 mb-1">
+          Votre budget (par nuit)
+        </h3>
         <div className="p-2">
           <Slider
             min={10}
