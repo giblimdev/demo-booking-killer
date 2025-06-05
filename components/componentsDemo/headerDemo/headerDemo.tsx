@@ -2,11 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import * as LucideIcons from "lucide-react";
-import { ArrowRight } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-
-const navLinks = [{ id: 1, label: "Home", href: "/", icon: "Home" }];
+import { Plus, HelpCircle } from "lucide-react";
+import Logo from "./Logo";
+import Social from "./Social";
+import HeaderDemoNav from "./HeaderDemoNav";
 
 export default function HeaderNav({
   onLinkClick,
@@ -14,24 +13,37 @@ export default function HeaderNav({
   onLinkClick?: () => void;
 }) {
   return (
-    <nav className="flex flex-col md:flex-row md:space-x-6 md:space-y-0 space-y-2 md:items-center">
-      {navLinks.map(({ id, label, href, icon }) => {
-        const Icon = (LucideIcons[icon as keyof typeof LucideIcons] ||
-          ArrowRight) as LucideIcon;
-
-        return (
+    <header className="w-full px-4 py-3 bg-white shadow">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
+        {/* Logo à gauche */}
+        <div className="flex-shrink-0">
+          <Logo />
+        </div>
+        {/* Navigation centrée */}
+        <nav className="flex-1 flex justify-center">
+          <HeaderDemoNav onLinkClick={onLinkClick} />
+        </nav>
+        {/* Social + boutons à droite */}
+        <div className="flex items-center space-x-2 flex-shrink-0">
+          <Social />
+        </div>
+        <div className="flex px-5">
           <Link
-            key={id}
-            href={href}
-            onClick={onLinkClick}
-            className="flex items-center p-3 md:p-2 rounded-md hover:bg-blue-50 transition-colors duration-200"
+            href="/ajouter-etablissement"
+            className="mx-2 flex items-center px-3 py-2 rounded-md bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
           >
-            <Icon className="w-5 h-5 text-blue-600 md:mr-2" />
-            <span className="text-gray-800 font-medium">{label}</span>
-            <ArrowRight className="ml-auto md:hidden w-4 h-4 text-gray-400" />
+            <Plus className="w-4 h-4 mr-1" />
+            Ajouter mon établissement
           </Link>
-        );
-      })}
-    </nav>
+          <Link
+            href="/aide"
+            className="mx-2 flex items-center px-3 py-2 rounded-md bg-gray-100 text-gray-800 font-medium hover:bg-gray-200 transition"
+          >
+            <HelpCircle className="w-4 h-4 mr-1" />
+            Aide
+          </Link>
+        </div>
+      </div>
+    </header>
   );
 }
