@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@import "keen-slider/keen-slider.min.css";
 
 @theme inline {
   --color-background: var(--background);

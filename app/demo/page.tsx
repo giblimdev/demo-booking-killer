@@ -5,6 +5,9 @@ import HeroForm from "@/components/componentsDemo/landing/HeroForm";
 import HeroImage from "@/components/componentsDemo/landing/HeroImage";
 import WhyChooseUs from "@/components/componentsDemo/landing/WhyChooseUs";
 import HistoriqueNav from "@/components/componentsDemo/landing/HistoriqueNav";
+import RodmapResa from "@/components/componentsDemo/landing/RodmapResa";
+import AccomodationTypes from "@/components/componentsDemo/landing/AccomodationTypes";
+import DestinationTypes from "@/components/componentsDemo/landing/DestinationTypes";
 
 export default function Home() {
   // Exemple d'objet hotel (non utilisé dans ce composant, mais vous pouvez l'utiliser plus tard)
@@ -28,8 +31,12 @@ export default function Home() {
         <HistoriqueNav />
       </div>
       <div>
-        <div></div>
-        <div>type de destination </div>
+        <div>
+          <AccomodationTypes />
+        </div>
+        <div>
+          <DestinationTypes />
+        </div>
         <div>promo de la platfom devenait membre</div>
         <div>installer l'apli</div>
         <div>promo du moment</div>
@@ -79,6 +86,9 @@ export default function Home() {
             <p className="text-gray-600">{"tokyoDescription"}</p>
           </div>
         </div>
+      </div>
+      <div>
+        <RodmapResa />{" "}
       </div>
     </div>
   );

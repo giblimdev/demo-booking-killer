@@ -4,14 +4,14 @@ import Link from "next/link";
 
 export default function HistoriqueNav() {
   return (
-    <section className="w-full bg-blue-50 rounded-2xl shadow p-6 flex flex-col gap-4 mb-8">
+    <section className="w-full bg-blue-50 shadow p-6 flex flex-col gap-4 mb-8">
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-2xl font-bold text-blue-900">
           Reprenez là où vous en étiez
         </h2>
         <Link
           href="/historique"
-          className="bg-blue-100 text-blue-700 text-sm font-semibold px-4 py-1.5 rounded-full hover:bg-blue-200 transition"
+          className="bg-blue-100 text-blue-700 text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-200 transition"
         >
           Voir toutes les activités récentes
         </Link>

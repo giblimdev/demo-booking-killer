@@ -15,20 +15,7 @@ export const destinations = [
   "Reims",
   "Le Havre",
   "Cannes",
-  "Grenoble"
-];
-
-export const accommodationTypes = [
-  "Hôtel",
-  "Appartement",
-  "Maison d'hôtes",
-  "Auberge",
-  "Résidence",
-  "Villa",
-  "Chambre d'hôtes",
-  "Gîte",
-  "Chalet",
-  "Camping"
+  "Grenoble",
 ];
 
 export const accomodationCharacteristics = [
@@ -46,7 +33,7 @@ export const accomodationCharacteristics = [
   "Spa",
   "Centre de remise en forme",
   "Terrasse/jardin",
-  "Parking privé"
+  "Parking privé",
 ];
 
 export const services = [
@@ -64,7 +51,7 @@ export const services = [
   "Centre d'affaires",
   "Location de vélos",
   "Animaux acceptés",
-  "Piscine"
+  "Piscine",
 ];
 
 export const roomFeatures = [
@@ -82,7 +69,7 @@ export const roomFeatures = [
   "Fer et planche à repasser",
   "Climatisation individuelle",
   "Vue sur mer",
-  "Balcon/terrasse"
+  "Balcon/terrasse",
 ];
 
 export const accessibilityOptions = [
@@ -95,7 +82,7 @@ export const accessibilityOptions = [
   "Personnel formé",
   "Signalétique adaptée",
   "Place de parking réservée",
-  "Douche à l'italienne"
+  "Douche à l'italienne",
 ];
 
 export const parkingOptions = [
@@ -108,7 +95,7 @@ export const parkingOptions = [
   "Stationnement dans la rue",
   "Valet parking",
   "Pas de parking",
-  "Parking électrique"
+  "Parking électrique",
 ];
 
 export const bedTypes = [
@@ -121,7 +108,7 @@ export const bedTypes = [
   "Lit bébé disponible",
   "Lit supplémentaire possible",
   "Lits jumeaux",
-  "Lit superposé"
+  "Lit superposé",
 ];
 
 export const mealOptions = [
@@ -134,7 +121,7 @@ export const mealOptions = [
   "Cuisine équipée dans la chambre",
   "Plateau/bouilloire dans la chambre",
   "Service en chambre",
-  "Options végétariennes"
+  "Options végétariennes",
 ];
 
 export const paymentOptions = [
@@ -147,7 +134,7 @@ export const paymentOptions = [
   "Cryptomonnaie",
   "Paiement en ligne sécurisé",
   "Paiement mobile",
-  "Carte cadeau"
+  "Carte cadeau",
 ];
 
 export const languagesSpoken = [
@@ -160,7 +147,7 @@ export const languagesSpoken = [
   "Arabe",
   "Chinois",
   "Russe",
-  "Japonais"
+  "Japonais",
 ];
 
 export const hotelCertifications = [
@@ -173,5 +160,7 @@ export const hotelCertifications = [
   "Relais & Châteaux",
   "Accueil Vélo",
   "Famille Plus",
-  "Tourisme & Handicap"
+  "Tourisme & Handicap",
 ];
+
+export const accommodationTypes = ["hotel", "chalet"];

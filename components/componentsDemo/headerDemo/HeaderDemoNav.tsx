@@ -9,8 +9,8 @@ import {
   Calendar,
   Link as LinkIcon,
   ArrowRight,
+  FileQuestion,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 
 // Liens de navigation avec icônes adaptées
 const navLinks = [
@@ -23,7 +23,8 @@ const navLinks = [
     href: "/demo/links",
     icon: Calendar,
   },
-  { id: 5, label: "Liens", href: "/demo/links", icon: LinkIcon },
+  { id: 5, label: "FAQ", href: "/demo/links", icon: FileQuestion },
+  { id: 6, label: "Liens", href: "/demo/links", icon: LinkIcon },
 ];
 
 export default function HeaderDemoNav({

@@ -1,3 +1,4 @@
+//exemples pour les card d'hotel
 export const hotelExample = {
   id: 1,
   name: "Hôtel Paradis",
