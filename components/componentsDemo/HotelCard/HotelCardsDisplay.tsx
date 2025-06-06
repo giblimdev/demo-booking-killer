@@ -1,3 +1,33 @@
+/*
+Propriétés principales :
+main_image_url : URL de l'image principale de l'hôtel
+name : Nom de l'hôtel
+star_rating : Nombre d'étoiles (1-5)
+overall_rating : Note globale de l'hôtel
+adjectif : Adjectif descriptif de la note (ex: "Excellent", "Très bien")
+nombres_avis : Nombre d'avis clients
+Informations de localisation :
+neighborhood : Quartier de l'hôtel
+distance_centre : Distance du centre-ville
+Pricing et promotions :
+base_price_per_night : Prix de base par nuit
+regular_price : Prix régulier (optionnel)
+currency : Devise (ex: "€", "$")
+Descriptions et contenus :
+short_description : Description courte de l'hôtel
+hotel_highlights : Points forts de l'hôtel (optionnel)
+message_promo : Message promotionnel (optionnel)
+message_sur_image : Message affiché sur l'image (optionnel)
+Informations complémentaires :
+hotel_group : Groupe hôtelier (optionnel)
+Label : Label spécial (optionnel)
+partener : Booléen indiquant si c'est un partenaire
+Hotel_amenity : Équipements de l'hôtel
+parking_options : Options de parking
+cancellation_policy : Politique d'annulation
+
+*/
+
 // components/HotelCardsDisplay.tsx
 "use client";
 import React, { useState, useMemo } from "react";

@@ -8,7 +8,6 @@ export default function pages() {
       finded hotel and aside search
       <div></div>
       <div>
-        <HotelCard />
         <HotelCardsDisplay />
       </div>
     </div>

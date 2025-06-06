@@ -20,11 +20,11 @@ export const hotelExample = [
     accessibility_options: "Ascenseur, Accès handicapés",
     parking_options: "Parking privé",
     accommodation_types: "Hotel",
-    main_image_url: "/city/meininger-marseille.png",
+    main_image_url: "/hotel/meininger-marseille.png",
     gallery_images: [
-      "/city/meininger1.png",
-      "/city/meininger2.png",
-      "/city/meininger3.png",
+      "/hotel/meininger1.png",
+      "/hotel/meininger2.png",
+      "/hotel/meininger3.png",
     ],
     neighborhood: "La Joliette",
     nearby_landmarks: [
@@ -64,11 +64,11 @@ export const hotelExample = [
       "Ascenseur, Accès handicapés, Service de conciergerie",
     parking_options: "Parking privé, Service voiturier",
     accommodation_types: "Hotel",
-    main_image_url: "/city/intercontinental-marseille.png",
+    main_image_url: "/hotel/intercontinental-marseille.png",
     gallery_images: [
-      "/city/intercontinental1.png",
-      "/city/intercontinental2.png",
-      "/city/intercontinental3.png",
+      "/hotel/intercontinental1.png",
+      "/hotel/intercontinental2.png",
+      "/hotel/intercontinental3.png",
     ],
     neighborhood: "Vieux-Port",
     nearby_landmarks: [
@@ -107,8 +107,12 @@ export const hotelExample = [
     accessibility_options: "Ascenseur, Accès handicapés",
     parking_options: "Parking public à proximité",
     accommodation_types: "Hotel",
-    main_image_url: "/city/mama-shelter.png",
-    gallery_images: ["/city/mama1.png", "/city/mama2.png", "/city/mama3.png"],
+    main_image_url: "/hotel/mama-shelter.png",
+    gallery_images: [
+      "/hotel/mama1.png",
+      "/hotel/mama2.png",
+      "/hotel/mama3.png",
+    ],
     neighborhood: "La Belle de Mai",
     nearby_landmarks: [
       "La Canebière (1.5 km)",
@@ -146,11 +150,11 @@ export const hotelExample = [
     accessibility_options: "Ascenseur, Chambres accessibles",
     parking_options: "Parking privé sécurisé",
     accommodation_types: "Hotel",
-    main_image_url: "/city/radisson-blu.png",
+    main_image_url: "/hotel/radisson-blu.png",
     gallery_images: [
-      "/city/radisson1.png",
-      "/city/radisson2.png",
-      "/city/radisson3.png",
+      "/hotel/radisson1.png",
+      "/hotel/radisson2.png",
+      "/hotel/radisson3.png",
     ],
     neighborhood: "Vieux-Port",
     nearby_landmarks: [
