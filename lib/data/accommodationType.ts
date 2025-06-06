@@ -25,6 +25,7 @@ export const accommodationTypes = [
     label: "Hôtel",
     icon: Hotel,
     order: 1,
+    description: "",
     image: "/accomodationType/hotel.png",
   },
   {

@@ -41,7 +41,7 @@ const steps = [
 
 export default function RodmapResa() {
   return (
-    <section className="max-w-2xl mx-auto p-6">
+    <section className="max-w-2xl mx-auto p-6 bg-purple-400">
       <h1 className="text-2xl font-bold text-blue-700 mb-6">
         Roadmap du parcours de réservation
       </h1>

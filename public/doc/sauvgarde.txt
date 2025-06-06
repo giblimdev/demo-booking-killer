@@ -4,29 +4,7 @@ Votre budget (par nuit)
 €1000+
 
 
-Destinations
 
-Beach
-
-Mountain
-
-Countryside
-
-Urban
-
-Shopping
-
-Historic
-
-Cultural
-
-Business
-
-Feetness
-
-Wellness
-
-Family
 
 
 
@@ -35,146 +13,65 @@ Family
 
 Équipements de la chambre
 
-Shared bathroom
+Shared bathroom,
 
-Shared toilet
+Shared toilet,
 
-Air conditioning
+Air conditioning,
 
-WiFi included
+WiFi included,
 
-Ensuite bathroom
+Ensuite bathroom,
 
-Jacuzzi
+Jacuzzi,
 
-Bathtub
+Bathtub,
 
-Shower
+Shower,
 
-Toilet
+Toilet,
 
-Balcony
+Balcony,
 
-Minibar
+Minibar,
 
-Refrigerator
+Refrigerator,
 
-Kettle
+Kettle,
 
-Coffee maker
+Coffee maker,
 
-Television
+Television,
 
-TV with streaming service
+TV with streaming service,
 
-Safe
+Safe,
 
-Iron and ironing board
+Iron and ironing board,
 
-Hair dryer
+Hair dryer,
 
-Free toiletries
+Free toiletries,
 
-Robes and slippers
+Robes and slippers,
 
-Desk
+Desk,
 
-Kitchen
+Kitchen,
 
-Laundry facilities
+Laundry facilities,
 
-Washing machine
+Washing machine,
 
-Baby cot available
-Services de l'hôtel
+Baby cot available,
 
-Bar
 
-Restaurant
 
-Casino
 
-Spa / massage
 
-Gym
 
-Business center
 
-Boutique
 
-Pool
-
-Water park
-
-Golf
-
-Concierge service
-
-Room service
-
-Currency exchange
-
-Wake-up service
-
-Laundry service
-
-24/7 reception
-
-Self check-in
-
-Bike rental
-
-Scooter rental
-
-Car rental
-
-Shuttle service
-
-Pets allowed
-
-Smoking area
-Options d'accessibilité
-
-Elevator
-
-Assistance animals allowed
-
-Step-free path
-
-Wheelchair-accessible shower
-
-Wheelchair-accessible parking
-
-
-
-
-Caractéristiques de l'hôtel
-
-Remarkable view
-
-Prime location
-
-Vibrant nightlife
-
-Romantic atmosphere
-
-Quiet and relaxing
-
-
-
-
-
-Options de parking
-
-Secure parking
-
-Covered parking
-
-Free parking
-
-Paid parking
-
-Electric vehicle charging station
 
 
 
@@ -193,39 +90,7 @@ Types de lits
 
 
 
-Types d'hébergement
 
-Hotel
-
-Villa
-
-Historic hotel
-
-Design hotel
-
-Boutique hotel
-
-Serviced apartment
-
-Condominium
-
-Apartment
-
-Guest house
-
-Youth hostel
-
-Houseboat
-
-Private vacation home
-
-Chalet
-
-Camping
-
-Bungalow
-
-Cottage
 
 
 

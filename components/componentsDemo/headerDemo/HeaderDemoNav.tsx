@@ -10,6 +10,7 @@ import {
   Link as LinkIcon,
   ArrowRight,
   FileQuestion,
+  Settings,
 } from "lucide-react";
 
 // Liens de navigation avec icônes adaptées
@@ -25,6 +26,7 @@ const navLinks = [
   },
   { id: 5, label: "FAQ", href: "/demo/links", icon: FileQuestion },
   { id: 6, label: "Liens", href: "/demo/links", icon: LinkIcon },
+  { id: 7, label: "Admin", href: "/admin", icon: Settings },
 ];
 
 export default function HeaderDemoNav({

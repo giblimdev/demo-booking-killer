@@ -9,6 +9,7 @@ import {
   Search,
   ChevronDown,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function HeroForm() {
   const [destination, setDestination] = useState("");
@@ -231,10 +232,12 @@ export default function HeroForm() {
 
         {/* Bouton Recherche */}
         <div className="lg:col-span-2">
-          <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-4 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
-            <Search className="w-5 h-5 mr-2" />
-            Rechercher
-          </button>
+          <Link href="/demo/findedHotel">
+            <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-4 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+              <Search className="w-5 h-5 mr-2" />
+              Rechercher
+            </button>
+          </Link>
         </div>
       </div>
     </div>

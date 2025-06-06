@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import { accommodationTypes } from "@/lib/data/accommodationType";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import "keen-slider/keen-slider.min.css";
@@ -34,7 +34,7 @@ export default function AccomodationTypes() {
   useEffect(() => {
     const interval = setInterval(() => {
       instanceRef.current?.next();
-    }, 3500); // Change 3500 to your desired autoplay speed (ms)
+    }, 3500);
     return () => clearInterval(interval);
   }, [instanceRef]);
 
@@ -42,13 +42,13 @@ export default function AccomodationTypes() {
   const handleNext = () => instanceRef.current?.next();
 
   return (
-    <section className=" py-14 bg-gradient-to-b from-blue-200 via-white to-blue-100">
+    <section className="py-14 bg-gradient-to-b from-blue-200 via-white to-blue-100">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-4xl font-extrabold mb-2 text-center text-blue-800 drop-shadow">
-          Types d’hébergement
+          Types d'hébergement
         </h2>
         <p className="text-center text-gray-500 mb-10 text-lg">
-          Trouvez l’hébergement qui correspond à vos envies et à votre style de
+          Trouvez l'hébergement qui correspond à vos envies et à votre style de
           voyage.
         </p>
         <div className="relative">
@@ -73,16 +73,13 @@ export default function AccomodationTypes() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
                 >
-                  <Card
-                    className="group flex flex-col items-center bg-gradient-to-tr from-blue-50 via-white to-blue-100 rounded-lg shadow-lg border border-blue-100 p-0 transition-all duration-300 min-h-[200px] max-w-[210px] mx-auto
-                    hover:shadow-2xl hover:-translate-y-2 hover:scale-105 hover:border-blue-300"
-                  >
+                  <Card className="group bg-gradient-to-tr from-blue-50 via-white to-blue-100 border border-blue-100 transition-all duration-300 h-[200px] w-[210px] mx-auto hover:shadow-2xl hover:-translate-y-2 hover:scale-105 hover:border-blue-300 overflow-hidden p-0">
                     {/* IMAGE */}
-                    <div className="w-full h-36 rounded-t-lg overflow-hidden border-b border-blue-100 shadow-sm relative">
+                    <div className="w-full h-56 overflow-hidden border-b border-blue-100 shadow-sm relative">
                       <img
                         src={type.image}
                         alt={type.label}
-                        className="object-cover w-full h-full rounded-t-lg transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
+                        className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
                       />
                       {idx === 0 && (
                         <span className="absolute top-3 left-3 bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full shadow font-semibold z-10">
@@ -90,12 +87,13 @@ export default function AccomodationTypes() {
                         </span>
                       )}
                     </div>
+
                     {/* CONTENU */}
-                    <div className="flex flex-col items-center px-4 py-3 w-full">
-                      <span className="font-bold text-lg text-blue-900 text-center tracking-tight mb-0.5">
+                    <CardContent className="flex flex-col items-center justify-center pb-3 h-16">
+                      <span className="font-bold text-lg text-blue-900 text-center tracking-tight leading-tight">
                         {type.label}
                       </span>
-                    </div>
+                    </CardContent>
                   </Card>
                 </motion.div>
               ))}
