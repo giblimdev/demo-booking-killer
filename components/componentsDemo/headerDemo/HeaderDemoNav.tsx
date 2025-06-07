@@ -11,11 +11,12 @@ import {
   ArrowRight,
   FileQuestion,
   Settings,
+  Sparkle,
 } from "lucide-react";
 
 // Liens de navigation avec icônes adaptées
 const navLinks = [
-  { id: 1, label: "Home", href: "/", icon: Home },
+  { id: 1, label: "Home", href: "/demo", icon: Home },
   { id: 2, label: "Blog", href: "/demo/Blog", icon: Handshake },
   { id: 3, label: "Mes\u00A0recherches", href: "/demo/links", icon: Search },
   {
@@ -25,8 +26,9 @@ const navLinks = [
     icon: Calendar,
   },
   { id: 5, label: "FAQ", href: "/demo/links", icon: FileQuestion },
-  { id: 6, label: "Liens", href: "/demo/links", icon: LinkIcon },
-  { id: 7, label: "Admin", href: "/admin", icon: Settings },
+  { id: 6, label: "A\u00A0propos", href: "/demo/About", icon: Sparkle },
+  { id: 7, label: "Liens", href: "/demo/links", icon: LinkIcon },
+  { id: 8, label: "Admin", href: "/admin", icon: Settings },
 ];
 
 export default function HeaderDemoNav({

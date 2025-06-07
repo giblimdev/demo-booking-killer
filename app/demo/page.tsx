@@ -17,7 +17,7 @@ export default function Home() {
   // Exemple d'objet hotel (non utilisé dans ce composant, mais vous pouvez l'utiliser plus tard)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-200 ">
+    <div className="max-w min-h-screen bg-gradient-to-br from-blue-50 to-purple-200 ">
       <div>
         <HeroImage />
       </div>
