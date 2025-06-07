@@ -1,0 +1,833 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+//////////////////////////////
+////     Tables auth     /////
+//////////////////////////////
+/**
+ * 🔐 Tables d'authentification
+ * User
+ * Rôle : Stocke les informations des utilisateurs de la plateforme
+ * typescript
+ * // Exemple d'utilisateur
+ * {
+ * id: "user_123",
+ * name: "Marie Dupont",
+ * email: "marie.dupont@email.com",
+ * emailVerified: true,
+ * image: "https://avatar.com/marie.jpg"
+ * }
+ */
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  emailVerified Boolean  @default(false)
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  sessions Session[]
+  accounts Account[]
+
+  @@map("users")
+}
+
+/**
+ * Session
+ * Rôle : Gère les sessions actives des utilisateurs connectés
+ * typescript
+ * // Exemple de session
+ * {
+ * id: "session_456",
+ * userId: "user_123",
+ * token: "eyJhbGciOiJIUzI1NiIs...",
+ * expiresAt: "2025-06-08T01:29:00Z",
+ * ipAddress: "192.168.1.100",
+ * userAgent: "Mozilla/5.0..."
+ * }
+ */
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+/**
+ * Account
+ * Rôle : Stocke les méthodes de connexion (OAuth, email/password)
+ * typescript
+ * // Exemple de compte Google OAuth
+ * {
+ * id: "account_789",
+ * userId: "user_123",
+ * providerId: "google",
+ * accessToken: "ya29.a0AfH6SMC...",
+ * refreshToken: "1//04...",
+ * scope: "openid email profile"
+ * }
+ */
+model Account {
+  id                    String    @id @default(cuid())
+  userId                String
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("accounts")
+}
+
+/**
+ * Verification
+ * Rôle : Gère les codes de vérification (email, reset password)
+ * typescript
+ * // Exemple de vérification email
+ * {
+ * id: "verif_101",
+ * identifier: "marie.dupont@email.com",
+ * value: "123456",
+ * expiresAt: "2025-06-07T02:29:00Z"
+ * }
+ */
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("verifications")
+}
+
+//////////////////////////////////////
+////     Tables touristiques     /////
+//////////////////////////////////////
+
+/**
+ * 🌍 Tables géographiques
+ * Country
+ * Rôle : Référentiel des pays
+ * typescript
+ * // Exemple de pays
+ * {
+ * id: "country_fr",
+ * name: "France",
+ * code: "FR"
+ * }
+ */
+model Country {
+  id        String   @id @default(uuid())
+  name      String
+  order     Int?     @default(100)
+  code      String   @unique //quel code ?
+  language  String? // plusieur langage possible
+  curency   String? // plusieur possible
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cities City[]
+
+  @@map("countries")
+}
+
+/**
+ * City
+ * Rôle : Villes appartenant aux pays
+ * typescript
+ * // Exemple de ville
+ * {
+ * id: "city_paris",
+ * name: "Paris",
+ * countryId: "country_fr"
+ * }
+ */
+model City {
+  id        String   @id @default(uuid())
+  name      String
+  order     Int?     @default(100)
+  countryId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  country       Country        @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  neighborhoods Neighborhood[]
+  landmarks     Landmark[]
+  addresses     Address[]
+  destinations  Destination[]
+
+  @@map("cities")
+}
+
+/**
+ * Neighborhood
+ * Rôle : Quartiers dans les villes
+ * typescript
+ * // Exemple de quartier
+ * {
+ * id: "neighborhood_marais",
+ * name: "Le Marais",
+ * cityId: "city_paris"
+ * }
+ */
+model Neighborhood {
+  id        String   @id @default(uuid())
+  name      String
+  order     Int?     @default(100)
+  cityId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  city      City      @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  addresses Address[]
+
+  @@map("neighborhoods")
+}
+
+/**
+ * Landmark
+ * Rôle : Points d'intérêt touristiques
+ * typescript
+ * // Exemple de monument
+ * {
+ * id: "landmark_eiffel",
+ * name: "Tour Eiffel",
+ * description: "Monument emblématique de Paris",
+ * type: "monument",
+ * cityId: "city_paris",
+ * latitude: 48.8584,
+ * longitude: 2.2945
+ * }
+ */
+model Landmark {
+  id          String   @id @default(uuid())
+  name        String
+  order       Int?     @default(100)
+  description String?
+  type        String
+  cityId      String
+  latitude    Float?
+  longitude   Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  city City @relation(fields: [cityId], references: [id], onDelete: Cascade)
+
+  @@map("landmarks")
+}
+
+///////////////////////////////////////
+////     Tables administrateur     /////
+///////////////////////////////////////
+/**
+ * 🏨 Tables de référentiel hôtelier
+ */
+/**
+ * AccommodationType
+ * Rôle : Types d'hébergement
+ * typescript
+ * // Exemples de types
+ * {
+ * id: "type_hotel",
+ * name: "Hôtel",
+ * code: "HTL",
+ * category: "Commercial"
+ * },
+ * {
+ * id: "type_resort",
+ * name: "Resort",
+ * code: "RST",
+ * category: "Commercial"
+ * }
+ */
+model AccommodationType {
+  id          String   @id @default(uuid())
+  name        String
+  order       Int?     @default(100)
+  code        String   @unique
+  description String?
+  category    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  hotelDetails HotelDetails[]
+
+  @@map("accommodation_types")
+}
+
+/**
+ * Destination
+ * Rôle : Zones touristiques et quartiers d'affaires
+ * typescript
+ * // Exemple de destination
+ * {
+ * id: "dest_paris_center",
+ * name: "Centre de Paris",
+ * description: "Cœur historique de Paris",
+ * type: "City Center",
+ * popularityScore: 95,
+ * cityId: "city_paris",
+ * radius: 5.0
+ * }
+ */
+model Destination {
+  id              String   @id @default(uuid())
+  name            String
+  order           Int?     @default(100)
+  description     String?
+  type            String
+  popularityScore Int      @default(0)
+  cityId          String
+  latitude        Float?
+  longitude       Float?
+  radius          Float?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  city         City           @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  hotelDetails HotelDetails[]
+
+  @@map("destinations")
+}
+
+/**
+ * Label
+ * Rôle : Certifications et labels qualité
+ * typescript
+ * // Exemples de labels
+ * {
+ * id: "label_eco",
+ * name: "Éco-responsable",
+ * code: "ECO",
+ * category: "Environmental",
+ * color: "#22c55e",
+ * priority: 10
+ * },
+ * {
+ * id: "label_family",
+ * name: "Accueil familial",
+ * code: "FAM",
+ * category: "Service"
+ * }
+ */
+model Label {
+  id          String   @id @default(uuid())
+  name        String
+  order       Int?     @default(100)
+  code        String   @unique
+  description String?
+  category    String
+  icon        String?
+  color       String?
+  priority    Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  hotelLabels HotelLabel[]
+
+  @@map("labels")
+}
+
+/**
+ * HotelGroup
+ * Rôle : Chaînes hôtelières et groupes
+ * typescript
+ * // Exemple de groupe hôtelier
+ * {
+ * id: "group_accor",
+ * name: "Accor",
+ * code: "ACC",
+ * website: "https://accor.com",
+ * headquarters: "Paris, France",
+ * totalProperties: 5300,
+ * totalRooms: 777000,
+ * annualRevenue: 4.1
+ * }
+ */
+model HotelGroup {
+  id              String   @id @default(uuid())
+  name            String // group ou professionnel gérer par un particulier
+  order           Int?     @default(100)
+  code            String   @unique
+  description     String?
+  website         String?
+  logoUrl         String?
+  foundedYear     Int?
+  headquarters    String?
+  totalProperties Int      @default(0)
+  totalRooms      Int      @default(0)
+  marketCap       Float?
+  annualRevenue   Float?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  hotelDetails HotelDetails[]
+
+  @@map("hotel_groups")
+}
+
+/**
+ * HotelHighlight
+ * Rôle : Points forts et arguments de vente
+ * typescript
+ * // Exemples de points forts
+ * {
+ * id: "highlight_location",
+ * title: "Emplacement exceptionnel",
+ * description: "À 2 minutes de l'Opéra",
+ * category: "Location",
+ * priority: 10,
+ * isPromoted: true,
+ * hotelId: "hotel_ritz"
+ * },
+ * {
+ * id: "highlight_breakfast",
+ * title: "Petit-déjeuner inclus",
+ * category: "Special Offer",
+ * priority: 5,
+ * hotelId: "hotel_ritz"
+ * }
+ */
+model HotelHighlight {
+  id          String   @id @default(uuid())
+  title       String
+  order       Int?     @default(100)
+  description String?
+  category    String // "Location", "Amenity", "Service", "View", "Offer", "Food"
+  icon        String? // image
+  priority    Int      @default(0)
+  isPromoted  Boolean  @default(false)
+  hotelId     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  hotel HotelDetails @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@map("hotel_highlights")
+}
+
+/**
+ * HotelAmenity
+ * Rôle : Équipements et services de l'hôtel
+ * typescript
+ * // Exemples d'équipements
+ * {
+ * id: "amenity_wifi",
+ * name: "WiFi gratuit",
+ * category: "Internet",
+ * icon: "wifi",
+ * hotelId: "hotel_ritz"
+ * },
+ * {
+ * id: "amenity_spa",
+ * name: "Spa & Wellness",
+ * category: "Recreation",
+ * icon: "spa",
+ * description: "Spa de luxe avec piscine intérieure",
+ * hotelId: "hotel_ritz"
+ * }
+ */
+model HotelAmenity {
+  id          String   @id @default(uuid())
+  name        String
+  order       Int?     @default(100)
+  category    String // Catégorie pour regroupement ("Location", "Amenity", "Service", "View", "Offer", "Food")
+  icon        String?
+  description String?
+  hotelId     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  hotel HotelDetails @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@map("hotel_amenities")
+}
+
+/**
+ * AccessibilityOption
+ * Rôle : Options d'accessibilité pour personnes handicapées
+ * typescript
+ * // Exemples d'accessibilité
+ * {
+ * id: "access_wheelchair",
+ * name: "Accès fauteuil roulant",
+ * code: "WCA",
+ * category: "Mobility",
+ * isRequired: true
+ * },
+ * {
+ * id: "access_hearing",
+ * name: "Équipements malentendants",
+ * code: "HIF",
+ * category: "Hearing"
+ * }
+ */
+model AccessibilityOption {
+  id          String   @id @default(uuid())
+  name        String
+  order       Int?     @default(100)
+  code        String   @unique
+  description String?
+  category    String
+  icon        String?
+  isRequired  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  hotelAccessibility HotelAccessibility[]
+
+  @@map("accessibility_options")
+}
+
+// Tables de liaison Many-to-Many
+model HotelLabel {
+  id        String    @id @default(uuid())
+  hotelId   String
+  labelId   String
+  isActive  Boolean   @default(true)
+  validFrom DateTime  @default(now())
+  validTo   DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  hotel HotelDetails @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  label Label        @relation(fields: [labelId], references: [id], onDelete: Cascade)
+
+  @@unique([hotelId, labelId])
+  @@map("hotel_labels")
+}
+
+/**
+ * HotelAccessibility
+ * Rôle : Options d'accessibilité par hôtel
+ * typescript
+ * // Exemple d'accessibilité
+ * {
+ * id: "ha_ritz_wheelchair",
+ * hotelId: "hotel_ritz",
+ * accessibilityOptionId: "access_wheelchair",
+ * isAvailable: true,
+ * description: "5 chambres adaptées au rez-de-chaussée",
+ * roomCount: 5
+ * }
+ */
+model HotelAccessibility {
+  id                    String   @id @default(uuid())
+  hotelId               String
+  accessibilityOptionId String
+  isAvailable           Boolean  @default(true)
+  description           String?
+  order                 Int?     @default(100)
+  roomCount             Int?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  hotel               HotelDetails        @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  accessibilityOption AccessibilityOption @relation(fields: [accessibilityOptionId], references: [id], onDelete: Cascade)
+
+  @@unique([hotelId, accessibilityOptionId])
+  @@map("hotel_accessibility")
+}
+
+/**
+ * HotelParking
+ * Rôle : Options de parking par hôtel
+ * typescript
+ * // Exemple de parking
+ * {
+ * id: "hp_ritz_valet",
+ * hotelId: "hotel_ritz",
+ * parkingOptionId: "parking_valet",
+ * isAvailable: true,
+ * spaces: 30,
+ * notes: "Service 24h/24"
+ * }
+ */
+model HotelParking {
+  id              String   @id @default(uuid())
+  hotelId         String
+  parkingOptionId String
+  isAvailable     Boolean  @default(true)
+  spaces          Int?
+  order           Int?     @default(100)
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  hotel         HotelDetails  @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  parkingOption ParkingOption @relation(fields: [parkingOptionId], references: [id], onDelete: Cascade)
+
+  @@unique([hotelId, parkingOptionId])
+  @@map("hotel_parking")
+}
+
+/**
+ * ParkingOption
+ * Rôle : Options de stationnement
+ * typescript
+ * // Exemples de parking
+ * {
+ * id: "parking_free",
+ * name: "Parking gratuit",
+ * type: "Free",
+ * location: "On-site",
+ * pricePerDay: 0,
+ * maxVehicles: 50
+ * },
+ * {
+ * id: "parking_valet",
+ * name: "Service voiturier",
+ * type: "Valet",
+ * location: "On-site",
+ * pricePerDay: 35.0,
+ * currency: "EUR"
+ * }
+ */
+
+model ParkingOption {
+  id           String   @id @default(uuid())
+  name         String
+  order        Int?     @default(100)
+  type         String
+  location     String
+  pricePerDay  Float?
+  currency     String   @default("EUR")
+  description  String?
+  isAvailable  Boolean  @default(true)
+  maxVehicles  Int?
+  restrictions String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  hotelParking HotelParking[]
+
+  @@map("parking_options")
+}
+
+/////////////////////////////////////////////
+/////     Tables création Hébergement     /////
+/////////////////////////////////////////////
+
+/**
+ * Address
+ * Rôle : Adresses complètes au format international
+ * typescript
+ * // Exemple d'adresse d'hôtel
+ * {
+ * id: "address_hotel1",
+ * streetNumber: "25",
+ * streetName: "Rue de Rivoli",
+ * addressLine2: "1er étage",
+ * postalCode: "75001",
+ * cityId: "city_paris",
+ * neighborhoodId: "neighborhood_marais",
+ * latitude: 48.8566,
+ * longitude: 2.3522
+ * }
+ */
+model Address {
+  id             String   @id @default(uuid())
+  streetNumber   String?
+  streetName     String
+  addressLine2   String?
+  postalCode     String
+  cityId         String
+  neighborhoodId String?
+  latitude       Float?
+  longitude      Float?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  city         City           @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  neighborhood Neighborhood?  @relation(fields: [neighborhoodId], references: [id], onDelete: SetNull)
+  hotelDetails HotelDetails[]
+
+  @@map("addresses")
+}
+
+/**
+ * HotelImage
+ * Rôle : Gestion des images d'hôtel
+ * typescript
+ * // Exemples d'images
+ * {
+ * id: "img_ritz_main",
+ * hotelId: "hotel_ritz",
+ * imageUrl: "https://images.com/ritz-facade.jpg",
+ * imageType: "main",
+ * order: 0,
+ * alt: "Façade du Ritz Paris"
+ * },
+ * {
+ * id: "img_ritz_gallery1",
+ * hotelId: "hotel_ritz",
+ * imageUrl: "https://images.com/ritz-suite.jpg",
+ * imageType: "gallery",
+ * order: 1,
+ * alt: "Suite présidentielle"
+ * }
+ */
+model HotelImage {
+  id        String   @id @default(uuid())
+  hotelId   String
+  imageUrl  String
+  imageType String   @default("main") // "main", "gallery", "room", etc.
+  order     Int      @default(20)
+  alt       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  hotel HotelDetails @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@map("hotel_images")
+}
+
+/**
+ * 🏨 Tables principales d'hôtel
+ */
+/**
+ * HotelDetails
+ * Rôle : Informations complètes des hôtels
+ * typescript
+ * // Exemple d'hôtel
+ * {
+ * id: "hotel_ritz",
+ * name: "Hôtel Ritz Paris",
+ * description: "Palace légendaire au cœur de Paris",
+ * shortDescription: "Luxe et raffinement place Vendôme",
+ * starRating: 5,
+ * overallRating: 9.2,
+ * ratingAdjective: "Exceptionnel",
+ * reviewCount: 1247,
+ * basePricePerNight: 850.0,
+ * regularPrice: 1200.0,
+ * currency: "EUR",
+ * isPartner: true,
+ * promoMessage: "Réservez maintenant et économisez 30%",
+ * addressId: "address_ritz",
+ * accommodationTypeId: "type_hotel",
+ * destinationId: "dest_paris_center",
+ * hotelGroupId: "group_ritz"
+ * }
+ */
+model HotelDetails {
+  id                  String   @id @default(uuid())
+  name                String
+  description         String?
+  shortDescription    String?
+  starRating          Int
+  overallRating       Float?
+  ratingAdjective     String?
+  reviewCount         Int      @default(0)
+  basePricePerNight   Float
+  regularPrice        Float?
+  currency            String   @default("EUR")
+  isPartner           Boolean  @default(false)
+  promoMessage        String?
+  imageMessage        String?
+  cancellationPolicy  String?
+  addressId           String
+  accommodationTypeId String?
+  destinationId       String?
+  hotelGroupId        String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  address           Address            @relation(fields: [addressId], references: [id], onDelete: Cascade)
+  accommodationType AccommodationType? @relation(fields: [accommodationTypeId], references: [id], onDelete: SetNull)
+  destination       Destination?       @relation(fields: [destinationId], references: [id], onDelete: SetNull)
+  hotelGroup        HotelGroup?        @relation(fields: [hotelGroupId], references: [id], onDelete: SetNull)
+
+  amenities     HotelAmenity[]
+  hotelCarts    HotelCart[]
+  highlights    HotelHighlight[]
+  labels        HotelLabel[]
+  accessibility HotelAccessibility[]
+  parking       HotelParking[]
+  images        HotelImage[]
+
+  @@map("hotel_details")
+}
+
+/**
+ * 🔗 Tables de liaison (Many-to-Many)
+ * HotelLabel
+ * Rôle : Association hôtels ↔ labels avec validité
+ * typescript
+ * // Exemple d'association
+ * {
+ * id: "hl_ritz_eco",
+ * hotelId: "hotel_ritz",
+ * labelId: "label_eco",
+ * isActive: true,
+ * validFrom: "2024-01-01",
+ * validTo: "2025-12-31"
+ * }
+ * //////////////////////
+ * ///   reservation  ///
+ * /////////////////////
+ * 🛒 Tables transactionnelles
+ * HotelCart
+ * Rôle : Panier de réservation (utilisateurs connectés et anonymes)
+ * typescript
+ * // Exemple de panier
+ * {
+ * id: "cart_123",
+ * userId: "user_123", // ou null pour anonyme
+ * sessionId: "session_456", // pour anonymes
+ * hotelId: "hotel_ritz",
+ * checkInDate: "2025-07-15",
+ * checkOutDate: "2025-07-18",
+ * adultCount: 2,
+ * childCount: 1,
+ * totalPrice: 2550.0,
+ * currency: "EUR"
+ * }
+ */
+model HotelCart {
+  id           String   @id @default(uuid())
+  userId       String?
+  sessionId    String?
+  hotelId      String
+  checkInDate  DateTime
+  checkOutDate DateTime
+  adultCount   Int      @default(1)
+  childCount   Int      @default(0)
+  totalPrice   Float
+  currency     String   @default("EUR")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  hotelDetails HotelDetails @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  @@map("hotel_carts")
+}
